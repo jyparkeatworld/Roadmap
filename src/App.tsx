@@ -104,7 +104,7 @@ export default function App() {
                   <button
                     key={cat.id}
                     onClick={() => handle1DepthToggle(cat)}
-                    className={`p-3 rounded-xl border text-left transition \${
+                    className={`p-3 rounded-xl border text-left transition ${
                       isSelected
                         ? "bg-blue-600 text-white border-blue-600 shadow-md"
                         : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
@@ -118,7 +118,7 @@ export default function App() {
             <button
               disabled={selected1Depths.length === 0}
               onClick={() => setStep(2)}
-              className={`w-full py-3 rounded-xl font-bold shadow-lg transition \${
+              className={`w-full py-3 rounded-xl font-bold shadow-lg transition ${
                 selected1Depths.length > 0
                   ? "bg-blue-600 text-white hover:bg-blue-700"
                   : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -145,7 +145,7 @@ export default function App() {
                   <button
                     key={sub.id}
                     onClick={() => handle2DepthToggle(sub)}
-                    className={`p-3 rounded-xl border text-left transition \${
+                    className={`p-3 rounded-xl border text-left transition ${
                       isSelected
                         ? "bg-indigo-600 text-white border-indigo-600 shadow-md"
                         : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
@@ -166,7 +166,7 @@ export default function App() {
               <button
                 disabled={selected2Depths.length === 0}
                 onClick={() => setStep(3)}
-                className={`w-2/3 py-3 rounded-xl font-bold shadow-lg transition \${
+                className={`w-2/3 py-3 rounded-xl font-bold shadow-lg transition ${
                   selected2Depths.length > 0
                     ? "bg-blue-600 text-white hover:bg-blue-700"
                     : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -196,4 +196,148 @@ export default function App() {
                   <button
                     key={kw}
                     onClick={() => handleKeywordToggle(kw)}
-                    className={`px-4 py-2 rounded-full border text-sm font-medium
+                    className={`px-4 py-2 rounded-full border text-sm font-medium transition ${
+                      isSelected
+                        ? "bg-emerald-600 text-white border-emerald-600"
+                        : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"
+                    }`}
+                  >
+                    #{kw}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setStep(2)}
+                className="w-1/3 bg-gray-200 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-300 transition"
+              >
+                ⬅ 이전
+              </button>
+              <button
+                disabled={selectedKeywords.length === 0}
+                onClick={() => setStep(4)}
+                className={`w-2/3 py-3 rounded-xl font-bold shadow-lg transition ${
+                  selectedKeywords.length > 0
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                }`}
+              >
+                다음 단계로 ➡
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ----------------- STEP 4: 목표 학습 시간 선택 ----------------- */}
+        {step === 4 && (
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-bold text-gray-800">
+                [Step 4] 목표 학습 시간 선택 (2시간 모듈 자동 조합)
+              </h2>
+              <span className="text-sm font-semibold text-blue-600">4 / 4 단계</span>
+            </div>
+            <div className="flex gap-4 mb-8">
+              {[5, 10, 15].map((hours) => (
+                <button
+                  key={hours}
+                  onClick={() => setTargetHours(hours)}
+                  className={`flex-1 py-3 rounded-xl border font-medium ${
+                    targetHours === hours
+                      ? "bg-purple-600 text-white border-purple-600 shadow-md"
+                      : "bg-white text-gray-700 border-gray-200"
+                  }`}
+                >
+                  {hours}시간 과정
+                </button>
+              ))}
+            </div>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setStep(3)}
+                className="w-1/3 bg-gray-200 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-300 transition"
+              >
+                ⬅ 이전
+              </button>
+              <button
+                onClick={handleGenerateRecommendation}
+                className="w-2/3 bg-blue-600 text-white py-3 rounded-xl font-bold shadow-lg hover:bg-blue-700 transition"
+              >
+                맞춤형 큐레이션 결과 생성하기 ✨
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ----------------- STEP 5: 큐레이션 결과 및 해커스 스타일 검색창 ----------------- */}
+        {step === 5 && recommendations && (
+          <div>
+            {/* 요청하신 안내 문구와 해커스 사이트 검색창 영역 */}
+            <div className="mb-8 bg-gray-100 p-6 rounded-2xl border border-gray-200">
+              <p className="text-center text-sm font-bold text-gray-700 mb-3">
+                큐레이션 과정을 바로 확인해보세요.
+              </p>
+              <div className="relative max-w-2xl mx-auto">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="엑셀 K열 과정명을 직접 복사해서 검색해보세요 (예: ChatGPT, 엑셀, 경영전략)..."
+                  className="w-full bg-white border border-gray-300 rounded-full py-3 px-6 pr-12 text-sm shadow-sm focus:outline-none focus:border-blue-500"
+                />
+                <span className="absolute right-4 top-3.5 text-gray-400 font-bold">
+                  🔍
+                </span>
+              </div>
+            </div>
+
+            <h2 className="text-xl font-bold text-gray-800 mb-4">
+              🎉 추천 학습 로드맵 결과 (총 목표: {targetHours}시간)
+            </h2>
+
+            {/* 검색 결과 또는 큐레이션 모듈 리스트 (수강신청 버튼 제외) */}
+            <div className="space-y-4 mb-8">
+              {(searchQuery ? filteredCourses : recommendations).map((course: any, idx: number) => (
+                <div
+                  key={course.id}
+                  className="p-5 rounded-xl border border-gray-200 bg-white shadow-sm flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2.5 py-1 rounded-md mr-2">
+                      Module {idx + 1} ({course.hours}시간)
+                    </span>
+                    <span className="text-sm text-gray-500 font-medium mr-2">
+                      [{course.difficulty}]
+                    </span>
+                    <h3 className="font-bold text-gray-800 mt-2 text-lg select-all">
+                      {course.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+              {searchQuery && filteredCourses.length === 0 && (
+                <p className="text-center text-gray-500 py-6">
+                  일치하는 과정명이 없습니다. 다른 검색어를 입력해 보세요.
+                </p>
+              )}
+            </div>
+
+            <button
+              onClick={() => {
+                setStep(1);
+                setSelected1Depths([]);
+                setSelected2Depths([]);
+                setSelectedKeywords([]);
+                setSearchQuery("");
+              }}
+              className="w-full bg-gray-800 text-white py-3 rounded-xl font-bold hover:bg-gray-900 transition"
+            >
+              처음부터 다시 시작하기 🔄
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
