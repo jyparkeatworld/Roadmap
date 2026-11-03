@@ -3,7 +3,7 @@ import data from "./coursesData.json";
 
 export default function App() {
   const [selected1Depths, setSelected1Depths] = useState<any[]>([]);
-  const [selected2Depth, setSelected2Depth] = useState<any>(null);
+  const [selected2Depths, setSelected2Depths] = useState<any[]>([]);
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
   const [targetHours, setTargetHours] = useState<number>(10);
   const [recommendations, setRecommendations] = useState<any[] | null>(null);
@@ -18,12 +18,21 @@ export default function App() {
       }
       setSelected1Depths([...selected1Depths, cat]);
     }
-    setSelected2Depth(null);
+    // 하위 선택 초기화
+    setSelected2Depths([]);
     setSelectedKeywords([]);
   };
 
-  const handle2DepthSelect = (sub: any) => {
-    setSelected2Depth(sub);
+  const handle2DepthToggle = (sub: any) => {
+    if (selected2Depths.some((item) => item.id === sub.id)) {
+      setSelected2Depths(selected2Depths.filter((item) => item.id !== sub.id));
+    } else {
+      if (selected2Depths.length >= 3) {
+        alert("세부 분야는 최대 3개까지 복수 선택 가능합니다.");
+        return;
+      }
+      setSelected2Depths([...selected2Depths, sub]);
+    }
     setSelectedKeywords([]);
   };
 
@@ -48,7 +57,7 @@ export default function App() {
     let matched = data.courses.filter(
       (course: any) =>
         selectedKeywords.includes(course.keyword) ||
-        course.subcategory === selected2Depth?.id
+        selected2Depths.some((sub) => sub.id === course.subcategory)
     );
 
     const uniqueMatched = Array.from(new Set(matched.map((c: any) => c.id))).map(
@@ -83,7 +92,7 @@ export default function App() {
           임직원 역량 강화를 위한 3Depth 트리 기반 스마트 추천 시스템
         </p>
 
-        {/* 1단계: 관심 대분류 선택 (복수 선택 최대 3개) */}
+        {/* 1단계: 관심 대분류 선택 (최대 3개 복수선택) */}
         <div className="mb-6">
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             1단계: 관심 카테고리 선택 (최대 3개 복수선택 가능)
@@ -108,38 +117,43 @@ export default function App() {
           </div>
         </div>
 
-        {/* 2단계: 선택된 대분류들의 세부 분야(서브카테고리) 노출 */}
+        {/* 2단계: 세부 분야 선택 (최대 3개 복수선택) */}
         {selected1Depths.length > 0 && (
           <div className="mb-6">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              2단계: 세부 분야 선택
+              2단계: 세부 분야 선택 (최대 3개 복수선택 가능)
             </label>
             <div className="grid grid-cols-2 gap-3">
-              {selected1Depths.flatMap((cat) => cat.subcategories).map((sub: any) => (
-                <button
-                  key={sub.id}
-                  onClick={() => handle2DepthSelect(sub)}
-                  className={`p-3 rounded-xl border text-left transition ${
-                    selected2Depth?.id === sub.id
-                      ? "bg-indigo-600 text-white border-indigo-600 shadow-md"
-                      : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
-                  }`}
-                >
-                  {sub.name}
-                </button>
-              ))}
+              {selected1Depths.flatMap((cat) => cat.subcategories).map((sub: any) => {
+                const isSelected = selected2Depths.some((item) => item.id === sub.id);
+                return (
+                  <button
+                    key={sub.id}
+                    onClick={() => handle2DepthToggle(sub)}
+                    className={`p-3 rounded-xl border text-left transition ${
+                      isSelected
+                        ? "bg-indigo-600 text-white border-indigo-600 shadow-md"
+                        : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
+                    }`}
+                  >
+                    {sub.name}
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}
 
-        {/* 3단계: 핵심 키워드 선택 (최대 3개) */}
-        {selected2Depth && (
+        {/* 3단계: 핵심 키워드 선택 (각 5개 중 최대 3개 선택) */}
+        {selected2Depths.length > 0 && (
           <div className="mb-6">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              3단계: 핵심 키워드 선택 (최대 3개)
+              3단계: 핵심 키워드 선택 (총 5개 중 최대 3개 선택)
             </label>
             <div className="flex flex-wrap gap-2">
-              {selected2Depth.keywords.map((kw: string) => {
+              {Array.from(
+                new Set(selected2Depths.flatMap((sub) => sub.keywords))
+              ).map((kw: any) => {
                 const isSelected = selectedKeywords.includes(kw);
                 return (
                   <button
