@@ -4,80 +4,110 @@
         "id": "ai_digital",
         "name": "AI·디지털활용",
         "subcategories": [
-          {
-            "id": "gen_ai",
-            "name": "생성형 AI",
-            "keywords": ["ChatGPT", "프롬프트", "업무자동화"]
-          },
-          {
-            "id": "data_anal",
-            "name": "데이터 분석",
-            "keywords": ["파이썬", "엑셀데이터", "시각화"]
-          }
+          { "id": "gen_ai", "name": "생성형 AI", "keywords": ["ChatGPT", "프롬프트", "업무자동화"] },
+          { "id": "cloud_sec", "name": "클라우드·보안", "keywords": ["클라우드", "정보보안", "네트워크"] },
+          { "id": "bigdata", "name": "빅데이터", "keywords": ["데이터분석", "시각화", "R"] },
+          { "id": "sw_dev", "name": "소프트웨어 개발", "keywords": ["파이썬", "자바", "웹개발"] },
+          { "id": "metaverse", "name": "메타버스·XR", "keywords": ["메타버스", "가상현실", "3D"] }
         ]
       },
       {
         "id": "oa_practical",
         "name": "OA·실무툴",
         "subcategories": [
-          {
-            "id": "excel_master",
-            "name": "엑셀 실무",
-            "keywords": ["피벗테이블", "VLOOKUP", "매크로"]
-          }
+          { "id": "excel_master", "name": "엑셀 실무", "keywords": ["피벗테이블", "VLOOKUP", "매크로"] },
+          { "id": "powerpoint", "name": "파워포인트 문서작성", "keywords": ["보고서작성", "기획서", "디자인템플릿"] },
+          { "id": "word_hwp", "name": "워드·한글", "keywords": ["공문서", "기본편집", "서식작성"] },
+          { "id": "notion_tools", "name": "협업툴(노션·슬랙)", "keywords": ["노션", "슬랙", "프로젝트관리"] },
+          { "id": "database_tool", "name": "데이터베이스 툴", "keywords": ["SQL", "Access", "DB관리"] }
+        ]
+      },
+      {
+        "id": "mgmt_finance_mba_leadership",
+        "name": "경영·금융·MBA·리더십",
+        "subcategories": [
+          { "id": "mba_strategy", "name": "MBA 전략경영", "keywords": ["경영전략", "비즈니스모델", "혁신"] },
+          { "id": "finance_acc", "name": "재무·회계", "keywords": ["재무제표", "원가회계", "세무관리"] },
+          { "id": "leadership", "name": "코칭 리더십", "keywords": ["조직관리", "동기부여", "소통"] },
+          { "id": "operations", "name": "생산·품질관리", "keywords": ["6시그마", "SCM", "공정관리"] },
+          { "id": "economics", "name": "경제 트렌드", "keywords": ["거시경제", "환율", "시장분석"] }
+        ]
+      },
+      {
+        "id": "corp_org_competency",
+        "name": "기업·조직역량",
+        "subcategories": [
+          { "id": "org_culture", "name": "조직문화 개선", "keywords": ["일하는방식", "온보딩", "심리안전망"] },
+          { "id": "compliance", "name": "컴플라이언스·법정", "keywords": ["법정의무교육", "윤리경영", "보안법규"] },
+          { "id": "problem_solving", "name": "문제해결·기획", "keywords": ["로직트리", "보고서작성", "창의적사고"] },
+          { "id": "cs_management", "name": "고객만족(CS)", "keywords": ["고객응대", "서비스마인드", "VOC"] },
+          { "id": "negotiation", "name": "협상·설득", "keywords": ["비즈니스협상", "갈등관리", "설득스피치"] }
+        ]
+      },
+      {
+        "id": "data_dev_it",
+        "name": "데이터·개발·IT",
+        "subcategories": [
+          { "id": "fullstack", "name": "풀스택 웹개발", "keywords": ["React", "Node.js", "API"] },
+          { "id": "app_dev", "name": "모바일 앱 개발", "keywords": ["Flutter", "iOS", "Android"] },
+          { "id": "devops", "name": "데브옵스·인프라", "keywords": ["Docker", "Kubernetes", "CI/CD"] },
+          { "id": "ai_ml", "name": "머신러닝·딥러닝", "keywords": ["텐서플로우", "파이토치", "AI모델"] },
+          { "id": "it_pm", "name": "IT 기획·PM", "keywords": ["애자일", "스프린트", "요구사항정의"] }
+        ]
+      },
+      {
+        "id": "design_creative",
+        "name": "디자인·크리에이티브",
+        "subcategories": [
+          { "id": "ui_ux", "name": "UI/UX 디자인", "keywords": ["피그마", "와이어프레임", "사용자경험"] },
+          { "id": "graphic", "name": "그래픽 디자인", "keywords": ["포토샵", "일러스트", "브랜딩"] },
+          { "id": "video_edit", "name": "영상 편집", "keywords": ["프리미어", "애프터이펙트", "유튜브편집"] },
+          { "id": "content_prod", "name": "콘텐츠 제작", "keywords": ["카드뉴스", "상세페이지", "블로그디자인"] },
+          { "id": "three_d", "name": "3D 모델링", "keywords": ["블렌더", "시각화", "렌더링"] }
+        ]
+      },
+      {
+        "id": "marketing_branding",
+        "name": "마케팅·브랜딩",
+        "subcategories": [
+          { "id": "digital_mkt", "name": "디지털 마케팅", "keywords": ["퍼포먼스마케팅", "GA4", "SNS광고"] },
+          { "id": "brand_mkt", "name": "브랜드 전략", "keywords": ["스토리텔링", "포지셔닝", "아이덴티티"] },
+          { "id": "content_mkt", "name": "콘텐츠 마케팅", "keywords": ["바이럴", "SEO", "카피라이팅"] },
+          { "id": "growth_hacking", "name": "그로스 해킹", "keywords": ["데이터드리븐", "A/B테스트", "전환율"] },
+          { "id": "global_mkt", "name": "글로벌 마케팅", "keywords": ["해외진출", "K-컬처", "수출마케팅"] }
+        ]
+      },
+      {
+        "id": "foreign_language",
+        "name": "외국어",
+        "subcategories": [
+          { "id": "biz_english", "name": "비즈니스 영어", "keywords": ["이메일영어", "영어회의", "오픽"] },
+          { "id": "global_conv", "name": "글로벌 회화", "keywords": ["생활영어", "발음교정", "실전회화"] },
+          { "id": "chinese", "name": "비즈니스 중국어", "keywords": ["회화기초", "중국무역", "HSK"] },
+          { "id": "japanese", "name": "비즈니스 일본어", "keywords": ["일본식표현", "면접일본어", "JLPT"] },
+          { "id": "other_lang", "name": "제2외국어 특강", "keywords": ["스페인어", "베트남어", "문화이해"] }
+        ]
+      },
+      {
+        "id": "humanities_lifestyle_selfdev",
+        "name": "인문·교양·라이프·자기개발",
+        "subcategories": [
+          { "id": "humanities", "name": "인문학·철학", "keywords": ["역사", "인문고전", "예술사"] },
+          { "id": "mindset", "name": "마인드셋·멘탈", "keywords": ["회복탄력성", "번아웃극복", "시간관리"] },
+          { "id": "health_wellness", "name": "건강·웰니스", "keywords": ["스트레스해소", "수면관리", "바른자세"] },
+          { "id": "hobby_life", "name": "취미·라이프스타일", "keywords": ["인테리어", "여행", "음악감상"] },
+          { "id": "speech_comms", "name": "스피치·커뮤니케이션", "keywords": ["보이스스타일링", "프레젠테이션", "대화법"] }
+        ]
+      },
+      {
+        "id": "certification",
+        "name": "자격증",
+        "subcategories": [
+          { "id": "it_cert", "name": "IT·디지털 자격증", "keywords": ["정보처리기사", "컴활1급", "SQLD"] },
+          { "id": "finance_cert", "name": "금융·회계 자격증", "keywords": ["재경관리사", "전산회계", "투자자산운용사"] },
+          { "id": "hr_cert", "name": "인사·노무 자격증", "keywords": ["노무사", "직업상담사", "HR전문가"] },
+          { "id": "lang_cert", "name": "어학 시험 대비", "keywords": ["토익", "오픽", "토스"] },
+          { "id": "tech_cert", "name": "기술·안전 자격증", "keywords": ["산업안전기사", "위험물", "건축기사"] }
         ]
       }
     ],
-    "courses": [
-      {
-        "id": 1,
-        "title": "퇴근을 앞당기는 ChatGPT 업무 자동화 실무",
-        "category": "ai_digital",
-        "subcategory": "gen_ai",
-        "keyword": "ChatGPT",
-        "hours": 2,
-        "difficulty": "초급",
-        "url": "https://archive.hackershrd.com/course/view.php?id=101"
-      },
-      {
-        "id": 2,
-        "title": "기획서 작성의 기술: 프롬프트 엔지니어링 입문",
-        "category": "ai_digital",
-        "subcategory": "gen_ai",
-        "keyword": "프롬프트",
-        "hours": 2,
-        "difficulty": "초급",
-        "url": "https://archive.hackershrd.com/course/view.php?id=102"
-      },
-      {
-        "id": 3,
-        "title": "파이썬으로 시작하는 데이터 분석 기초",
-        "category": "ai_digital",
-        "subcategory": "data_anal",
-        "keyword": "파이썬",
-        "hours": 2,
-        "difficulty": "중급",
-        "url": "https://archive.hackershrd.com/course/view.php?id=103"
-      },
-      {
-        "id": 4,
-        "title": "실무에 바로 쓰는 엑셀 피벗테이블과 차트",
-        "category": "oa_practical",
-        "subcategory": "excel_master",
-        "keyword": "피벗테이블",
-        "hours": 2,
-        "difficulty": "초급",
-        "url": "https://archive.hackershrd.com/course/view.php?id=104"
-      },
-      {
-        "id": 5,
-        "title": "칼퇴를 부르는 VLOOKUP & INDEX 실무 마스터",
-        "category": "oa_practical",
-        "subcategory": "excel_master",
-        "keyword": "VLOOKUP",
-        "hours": 2,
-        "difficulty": "중급",
-        "url": "https://archive.hackershrd.com/course/view.php?id=105"
-      }
-    ]
-  }

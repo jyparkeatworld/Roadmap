@@ -2,14 +2,22 @@ import React, { useState } from "react";
 import data from "./coursesData.json";
 
 export default function App() {
-  const [selected1Depth, setSelected1Depth] = useState<any>(null);
+  const [selected1Depths, setSelected1Depths] = useState<any[]>([]);
   const [selected2Depth, setSelected2Depth] = useState<any>(null);
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
   const [targetHours, setTargetHours] = useState<number>(10);
   const [recommendations, setRecommendations] = useState<any[] | null>(null);
 
-  const handle1DepthSelect = (cat: any) => {
-    setSelected1Depth(cat);
+  const handle1DepthToggle = (cat: any) => {
+    if (selected1Depths.some((item) => item.id === cat.id)) {
+      setSelected1Depths(selected1Depths.filter((item) => item.id !== cat.id));
+    } else {
+      if (selected1Depths.length >= 3) {
+        alert("관심 카테고리는 최대 3개까지 복수 선택 가능합니다.");
+        return;
+      }
+      setSelected1Depths([...selected1Depths, cat]);
+    }
     setSelected2Depth(null);
     setSelectedKeywords([]);
   };
@@ -75,34 +83,39 @@ export default function App() {
           임직원 역량 강화를 위한 3Depth 트리 기반 스마트 추천 시스템
         </p>
 
+        {/* 1단계: 관심 대분류 선택 (복수 선택 최대 3개) */}
         <div className="mb-6">
           <label className="block text-sm font-semibold text-gray-700 mb-2">
-            1단계: 관심 대분류 선택
+            1단계: 관심 카테고리 선택 (최대 3개 복수선택 가능)
           </label>
-          <div className="grid grid-cols-2 gap-3">
-            {data.categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => handle1DepthSelect(cat)}
-                className={`p-3 rounded-xl border text-left transition ${
-                  selected1Depth?.id === cat.id
-                    ? "bg-blue-600 text-white border-blue-600 shadow-md"
-                    : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {data.categories.map((cat) => {
+              const isSelected = selected1Depths.some((item) => item.id === cat.id);
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handle1DepthToggle(cat)}
+                  className={`p-3 rounded-xl border text-left transition ${
+                    isSelected
+                      ? "bg-blue-600 text-white border-blue-600 shadow-md"
+                      : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
+                  }`}
+                >
+                  {cat.name}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {selected1Depth && (
+        {/* 2단계: 선택된 대분류들의 세부 분야(서브카테고리) 노출 */}
+        {selected1Depths.length > 0 && (
           <div className="mb-6">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               2단계: 세부 분야 선택
             </label>
             <div className="grid grid-cols-2 gap-3">
-              {selected1Depth.subcategories.map((sub: any) => (
+              {selected1Depths.flatMap((cat) => cat.subcategories).map((sub: any) => (
                 <button
                   key={sub.id}
                   onClick={() => handle2DepthSelect(sub)}
@@ -119,6 +132,7 @@ export default function App() {
           </div>
         )}
 
+        {/* 3단계: 핵심 키워드 선택 (최대 3개) */}
         {selected2Depth && (
           <div className="mb-6">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -145,6 +159,7 @@ export default function App() {
           </div>
         )}
 
+        {/* 목표 학습 시간 선택 */}
         <div className="mb-6">
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             목표 학습 시간 선택 (2시간 모듈 자동 조합)
@@ -173,6 +188,7 @@ export default function App() {
           맞춤형 큐레이션 결과 생성하기
         </button>
 
+        {/* 추천 결과 및 개별 과정 링크 연동 */}
         {recommendations && (
           <div className="mt-8 border-t pt-6">
             <h2 className="text-xl font-bold text-gray-800 mb-4">
