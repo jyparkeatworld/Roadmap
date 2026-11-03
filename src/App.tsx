@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import data from "./coursesData.json";
 
 export default function App() {
+  const [step, setStep] = useState<number>(1);
   const [selected1Depths, setSelected1Depths] = useState<any[]>([]);
   const [selected2Depths, setSelected2Depths] = useState<any[]>([]);
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
   const [targetHours, setTargetHours] = useState<number>(10);
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [recommendations, setRecommendations] = useState<any[] | null>(null);
 
   const handle1DepthToggle = (cat: any) => {
@@ -18,7 +20,6 @@ export default function App() {
       }
       setSelected1Depths([...selected1Depths, cat]);
     }
-    // 하위 선택 초기화
     setSelected2Depths([]);
     setSelectedKeywords([]);
   };
@@ -68,19 +69,14 @@ export default function App() {
     const finalCourses = uniqueMatched.slice(0, requiredCount);
 
     setRecommendations(finalCourses);
+    setStep(5); // 결과 페이지로 이동
   };
 
-  const handleCourseClick = (courseTitle: string, url: string) => {
-    if (typeof (window as any).gtag === "function") {
-      (window as any).gtag("event", "click_course_link", {
-        event_category: "Curation",
-        event_label: courseTitle,
-        value: 1,
-      });
-    }
-    console.log(`[Analytics Tracking] Clicked course: ${courseTitle}`);
-    window.open(url, "_blank");
-  };
+  // 엑셀 K열 과정명 검색 필터링 (검색어 입력 시 일치하는 과정 검색)
+  const filteredCourses = data.courses.filter((course: any) =>
+    course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    course.keyword.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 font-sans">
@@ -89,48 +85,67 @@ export default function App() {
           🎯 아카이브 맞춤형 지능형 큐레이션 플랫폼
         </h1>
         <p className="text-gray-600 mb-6">
-          임직원 역량 강화를 위한 3Depth 트리 기반 스마트 추천 시스템
+          임직원 역량 강화를 위한 스텝별 맞춤 추천 시스템
         </p>
 
-        {/* 1단계: 관심 대분류 선택 (최대 3개 복수선택) */}
-        <div className="mb-6">
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
-            1단계: 관심 카테고리 선택 (최대 3개 복수선택 가능)
-          </label>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {data.categories.map((cat) => {
-              const isSelected = selected1Depths.some((item) => item.id === cat.id);
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => handle1DepthToggle(cat)}
-                  className={`p-3 rounded-xl border text-left transition ${
-                    isSelected
-                      ? "bg-blue-600 text-white border-blue-600 shadow-md"
-                      : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
-                  }`}
-                >
-                  {cat.name}
-                </button>
-              );
-            })}
+        {/* ----------------- STEP 1: 1단계 대분류 선택 ----------------- */}
+        {step === 1 && (
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-bold text-gray-800">
+                [Step 1] 1단계: 관심 카테고리 선택 (최대 3개 복수선택)
+              </h2>
+              <span className="text-sm font-semibold text-blue-600">1 / 4 단계</span>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
+              {data.categories.map((cat) => {
+                const isSelected = selected1Depths.some((item) => item.id === cat.id);
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => handle1DepthToggle(cat)}
+                    className={`p-3 rounded-xl border text-left transition \${
+                      isSelected
+                        ? "bg-blue-600 text-white border-blue-600 shadow-md"
+                        : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
+                    }`}
+                  >
+                    {cat.name}
+                  </button>
+                );
+              })}
+            </div>
+            <button
+              disabled={selected1Depths.length === 0}
+              onClick={() => setStep(2)}
+              className={`w-full py-3 rounded-xl font-bold shadow-lg transition \${
+                selected1Depths.length > 0
+                  ? "bg-blue-600 text-white hover:bg-blue-700"
+                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+              }`}
+            >
+              다음 단계로 ➡
+            </button>
           </div>
-        </div>
+        )}
 
-        {/* 2단계: 세부 분야 선택 (최대 3개 복수선택) */}
-        {selected1Depths.length > 0 && (
-          <div className="mb-6">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              2단계: 세부 분야 선택 (최대 3개 복수선택 가능)
-            </label>
-            <div className="grid grid-cols-2 gap-3">
+        {/* ----------------- STEP 2: 2단계 세부 분야 선택 ----------------- */}
+        {step === 2 && (
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-bold text-gray-800">
+                [Step 2] 2단계: 세부 분야 선택 (최대 3개 복수선택)
+              </h2>
+              <span className="text-sm font-semibold text-blue-600">2 / 4 단계</span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 mb-8">
               {selected1Depths.flatMap((cat) => cat.subcategories).map((sub: any) => {
                 const isSelected = selected2Depths.some((item) => item.id === sub.id);
                 return (
                   <button
                     key={sub.id}
                     onClick={() => handle2DepthToggle(sub)}
-                    className={`p-3 rounded-xl border text-left transition ${
+                    className={`p-3 rounded-xl border text-left transition \${
                       isSelected
                         ? "bg-indigo-600 text-white border-indigo-600 shadow-md"
                         : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
@@ -141,16 +156,38 @@ export default function App() {
                 );
               })}
             </div>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setStep(1)}
+                className="w-1/3 bg-gray-200 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-300 transition"
+              >
+                ⬅ 이전
+              </button>
+              <button
+                disabled={selected2Depths.length === 0}
+                onClick={() => setStep(3)}
+                className={`w-2/3 py-3 rounded-xl font-bold shadow-lg transition \${
+                  selected2Depths.length > 0
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                }`}
+              >
+                다음 단계로 ➡
+              </button>
+            </div>
           </div>
         )}
 
-        {/* 3단계: 핵심 키워드 선택 (각 5개 중 최대 3개 선택) */}
-        {selected2Depths.length > 0 && (
-          <div className="mb-6">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              3단계: 핵심 키워드 선택 (총 5개 중 최대 3개 선택)
-            </label>
-            <div className="flex flex-wrap gap-2">
+        {/* ----------------- STEP 3: 3단계 핵심 키워드 선택 ----------------- */}
+        {step === 3 && (
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-bold text-gray-800">
+                [Step 3] 3단계: 핵심 키워드 선택 (총 5개 중 최대 3개 선택)
+              </h2>
+              <span className="text-sm font-semibold text-blue-600">3 / 4 단계</span>
+            </div>
+            <div className="flex flex-wrap gap-2 mb-8">
               {Array.from(
                 new Set(selected2Depths.flatMap((sub) => sub.keywords))
               ).map((kw: any) => {
@@ -159,84 +196,4 @@ export default function App() {
                   <button
                     key={kw}
                     onClick={() => handleKeywordToggle(kw)}
-                    className={`px-4 py-2 rounded-full border text-sm font-medium transition ${
-                      isSelected
-                        ? "bg-emerald-600 text-white border-emerald-600"
-                        : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"
-                    }`}
-                  >
-                    #{kw}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* 목표 학습 시간 선택 */}
-        <div className="mb-6">
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
-            목표 학습 시간 선택 (2시간 모듈 자동 조합)
-          </label>
-          <div className="flex gap-4">
-            {[5, 10, 15].map((hours) => (
-              <button
-                key={hours}
-                onClick={() => setTargetHours(hours)}
-                className={`flex-1 py-2 rounded-lg border font-medium ${
-                  targetHours === hours
-                    ? "bg-purple-600 text-white border-purple-600"
-                    : "bg-white text-gray-700 border-gray-200"
-                }`}
-              >
-                {hours}시간 과정
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <button
-          onClick={handleGenerateRecommendation}
-          className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold shadow-lg hover:bg-blue-700 transition"
-        >
-          맞춤형 큐레이션 결과 생성하기
-        </button>
-
-        {/* 추천 결과 및 개별 과정 링크 연동 */}
-        {recommendations && (
-          <div className="mt-8 border-t pt-6">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              🎉 추천 학습 로드맵 결과 (총 목표: {targetHours}시간)
-            </h2>
-            <div className="space-y-4">
-              {recommendations.map((course: any, idx: number) => (
-                <div
-                  key={course.id}
-                  className="p-4 rounded-xl border border-gray-200 bg-gray-50 flex justify-between items-center"
-                >
-                  <div>
-                    <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-1 rounded-md mr-2">
-                      Module {idx + 1} ({course.hours}시간)
-                    </span>
-                    <span className="text-sm text-gray-500 font-medium mr-2">
-                      [{course.difficulty}]
-                    </span>
-                    <h3 className="font-bold text-gray-800 mt-1">
-                      {course.title}
-                    </h3>
-                  </div>
-                  <button
-                    onClick={() => handleCourseClick(course.title, course.url)}
-                    className="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-emerald-700 transition shadow"
-                  >
-                    수강신청 바로가기 ↗
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+                    className={`px-4 py-2 rounded-full border text-sm font-medium
