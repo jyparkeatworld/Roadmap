@@ -106,7 +106,7 @@
           { "id": "it_cert", "name": "IT·디지털 자격증", "keywords": ["정보처리기사", "컴활1급", "SQLD", "빅데이터분석기사", "네트워크관리사"] },
           { "id": "finance_cert", "name": "금융·회계 자격증", "keywords": ["재경관리사", "전산회계", "투자자산운용사", "회계관리", "펀드투자"] },
           { "id": "hr_cert", "name": "인사·노무 자격증", "keywords": ["노무사", "직업상담사", "HR전문가", "임금관리", "근로기준법"] },
-          { "id": "lang_cert", "name": "어학 시험 대비", "keywords": ["토익", "오픽", "토스", "텝스", "아이엘츠"] },
+          { "id": "lang_cert", "name": "어학 시험 대비", "keywords": ["토익", "오픽", "토ส", "텝스", "아이엘츠"] },
           { "id": "tech_cert", "name": "기술·안전 자격증", "keywords": ["산업안전기사", "위험물", "건축기사", "소방설비", "품질관리기사"] }
         ]
       }
@@ -114,46 +114,208 @@
     "courses": [
       {
         "id": 1,
-        "title": "퇴근을 앞당기는 ChatGPT 업무 자동화 실무",
-        "category": "ai_digital",
-        "subcategory": "gen_ai",
-        "keyword": "ChatGPT",
+        "title": "실무자라면 꼭 알아야 할 여신법률 [여신거래정립편]",
+        "category": "mgmt_finance_mba_leadership",
+        "subcategory": "finance_acc",
+        "keyword": "세무관리",
         "hours": 2,
-        "difficulty": "초급"
+        "difficulty": "중급"
       },
       {
         "id": 2,
-        "title": "기획서 작성의 기술: 프롬프트 엔지니어링 입문",
-        "category": "ai_digital",
-        "subcategory": "gen_ai",
-        "keyword": "프롬프트",
+        "title": "[해커스 PRO MBA] 마케팅",
+        "category": "mgmt_finance_mba_leadership",
+        "subcategory": "mba_strategy",
+        "keyword": "경영전략",
         "hours": 2,
-        "difficulty": "초급"
+        "difficulty": "중급"
       },
       {
         "id": 3,
-        "title": "실무에 바로 쓰는 엑셀 피벗테이블과 차트",
-        "category": "oa_practical",
-        "subcategory": "excel_master",
-        "keyword": "피벗테이블",
+        "title": "[고급] 그림으로 배우는 일본어 한자&작문",
+        "category": "foreign_language",
+        "subcategory": "japanese",
+        "keyword": "JLPT",
         "hours": 2,
-        "difficulty": "초급"
+        "difficulty": "고급"
       },
       {
         "id": 4,
-        "title": "칼퇴를 부르는 VLOOKUP & INDEX 실무 마스터",
-        "category": "oa_practical",
-        "subcategory": "excel_master",
-        "keyword": "VLOOKUP",
+        "title": "[해커스 PRO MBA] 회계",
+        "category": "mgmt_finance_mba_leadership",
+        "subcategory": "finance_acc",
+        "keyword": "재무제표",
         "hours": 2,
         "difficulty": "중급"
       },
       {
         "id": 5,
-        "title": "MBA 핵심을 담은 비즈니스 전략과 모델 수립",
+        "title": "[해커스 PRO MBA] 재무관리",
         "category": "mgmt_finance_mba_leadership",
-        "subcategory": "mba_strategy",
-        "keyword": "경영전략",
+        "subcategory": "finance_acc",
+        "keyword": "손익분석",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 6,
+        "title": "[해커스 PRO MBA] 인적자원관리",
+        "category": "corp_org_competency",
+        "subcategory": "org_culture",
+        "keyword": "온보딩",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 7,
+        "title": "가장 쉽게 배우는 일러스트, 기초부터 응용까지",
+        "category": "design_creative",
+        "subcategory": "graphic",
+        "keyword": "일러스트",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 8,
+        "title": "누구나 R기 쉬운 R 데이터 분석 프로젝트",
+        "category": "ai_digital",
+        "subcategory": "bigdata",
+        "keyword": "R",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 9,
+        "title": "잘 써야 잘 읽힌다! 직장인을 위한 비즈니스 글쓰기 수업",
+        "category": "corp_org_competency",
+        "subcategory": "problem_solving",
+        "keyword": "보고서작성",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 10,
+        "title": "상대의 Yes를 끌어내는 [성공적인 협상 원칙]",
+        "category": "corp_org_competency",
+        "subcategory": "negotiation",
+        "keyword": "비즈니스협상",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 11,
+        "title": "MZ후배가 어려운 요즘선배를 위한, 조직 내 세대소통",
+        "category": "corp_org_competency",
+        "subcategory": "org_culture",
+        "keyword": "소통문화",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 12,
+        "title": "실무자라면 꼭 알아야 할 [의심거래보고(STR) 작성법]",
+        "category": "mgmt_finance_mba_leadership",
+        "subcategory": "finance_acc",
+        "keyword": "세무관리",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 13,
+        "title": "아는 만큼 지킨다! 공정거래를 위한 하도급법 교육",
+        "category": "corp_org_competency",
+        "subcategory": "compliance",
+        "keyword": "윤리경영",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 14,
+        "title": "우리 병원 차별화 전략! 4주기 의료인증의 모든 것",
+        "category": "corp_org_competency",
+        "subcategory": "cs_management",
+        "keyword": "고객응대",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 15,
+        "title": "유능한 인재를 선점하는 [스마트한 면접관의 모든 것]",
+        "category": "corp_org_competency",
+        "subcategory": "org_culture",
+        "keyword": "온보딩",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 16,
+        "title": "가장 쉽게 배우는 Spring(스프링), 기초부터 실무까지",
+        "category": "ai_digital",
+        "subcategory": "sw_dev",
+        "keyword": "자바",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 17,
+        "title": "인사쟁이라면 꼭 알아야 하는 [인사 실무의 모든 것]",
+        "category": "corp_org_competency",
+        "subcategory": "org_culture",
+        "keyword": "조직몰입",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 18,
+        "title": "성과를 끌어올리는 리얼영업",
+        "category": "marketing_branding",
+        "subcategory": "digital_mkt",
+        "keyword": "SNS광고",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 19,
+        "title": "우리 병원 차별화 전략! 병원CS의 모든 것",
+        "category": "corp_org_competency",
+        "subcategory": "cs_management",
+        "keyword": "VOC",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 20,
+        "title": "설계부터 특허까지, R&D 기획의 모든 것",
+        "category": "corp_org_competency",
+        "subcategory": "problem_solving",
+        "keyword": "기획력",
+        "hours": 2,
+        "difficulty": "고급"
+      },
+      {
+        "id": 21,
+        "title": "300% 활용! 칼퇴를 부르는 한글2022의 모든 것",
+        "category": "oa_practical",
+        "subcategory": "word_hwp",
+        "keyword": "공문서",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 22,
+        "title": "핵심만 쏙! 실무에 바로 적용하는 머신러닝",
+        "category": "ai_digital",
+        "subcategory": "ai_ml",
+        "keyword": "AI모델",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 23,
+        "title": "기획에서 판매까지! 이커머스 실무바이블",
+        "category": "marketing_branding",
+        "subcategory": "digital_mkt",
+        "keyword": "퍼포먼스마케팅",
         "hours": 2,
         "difficulty": "중급"
       }
