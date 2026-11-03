@@ -111,3 +111,56 @@
         ]
       }
     ],
+    "courses": [
+      {
+        "id": 1,
+        "title": "퇴근을 앞당기는 ChatGPT 업무 자동화 실무",
+        "category": "ai_digital",
+        "subcategory": "gen_ai",
+        "keyword": "ChatGPT",
+        "hours": 2,
+        "difficulty": "초급",
+        "url": "https://archive.hackershrd.com/course/view.php?id=101"
+      },
+      {
+        "id": 2,
+        "title": "기획서 작성의 기술: 프롬프트 엔지니어링 입문",
+        "category": "ai_digital",
+        "subcategory": "gen_ai",
+        "keyword": "프롬프트",
+        "hours": 2,
+        "difficulty": "초급",
+        "url": "https://archive.hackershrd.com/course/view.php?id=102"
+      },
+      {
+        "id": 3,
+        "title": "실무에 바로 쓰는 엑셀 피벗테이블과 차트",
+        "category": "oa_practical",
+        "subcategory": "excel_master",
+        "keyword": "피벗테이블",
+        "hours": 2,
+        "difficulty": "초급",
+        "url": "https://archive.hackershrd.com/course/view.php?id=104"
+      },
+      {
+        "id": 4,
+        "title": "칼퇴를 부르는 VLOOKUP & INDEX 실무 마스터",
+        "category": "oa_practical",
+        "subcategory": "excel_master",
+        "keyword": "VLOOKUP",
+        "hours": 2,
+        "difficulty": "중급",
+        "url": "https://archive.hackershrd.com/course/view.php?id=105"
+      },
+      {
+        "id": 5,
+        "title": "MBA 핵심을 담은 비즈니스 전략과 모델 수립",
+        "category": "mgmt_finance_mba_leadership",
+        "subcategory": "mba_strategy",
+        "keyword": "경영전략",
+        "hours": 2,
+        "difficulty": "중급",
+        "url": "https://archive.hackershrd.com/course/view.php?id=106"
+      }
+    ]
+  }
