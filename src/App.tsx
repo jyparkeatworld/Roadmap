@@ -60,7 +60,6 @@ export default function App() {
         selected2Depths.some((sub) => sub.id === course.subcategory)
     );
 
-    // 매칭된 결과가 부족할 경우 전체 과정에서 안전하게 채워넣기
     if (matched.length === 0) {
       matched = data.courses;
     }
@@ -72,7 +71,6 @@ export default function App() {
     const requiredCount = targetHours / 2;
     let finalCourses = uniqueMatched.slice(0, requiredCount);
 
-    // 만약 개수가 모자라면 반복해서 채워줌
     while (finalCourses.length < requiredCount && data.courses.length > 0) {
       const nextCourse = data.courses[finalCourses.length % data.courses.length];
       finalCourses.push(nextCourse);
@@ -82,22 +80,19 @@ export default function App() {
     setStep(5);
   };
 
-  const handleExternalSearch = (title: string) => {
-    const encodedTitle = encodeURIComponent(title);
-    const searchUrl = `https://archive.hackershrd.com/lecture_240216.php?mode=lecList_240216&sword=${encodedTitle}`;
-    window.open(searchUrl, "_blank");
+  const handleArchiveLanding = () => {
+    window.open("https://archive.hackershrd.com", "_blank");
   };
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 font-sans flex items-center justify-center">
-      {/* 템플릿 가로 크기는 고정하고 세로 높이를 1.5배(py-16, min-h-[750px] 등) 확대 */}
       <div className="w-full max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-12 min-h-[720px] flex flex-col justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">
-            🎯 HRD 아카이브 과정을 관심사에 맞게 큐레이션 해보세요.
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+            🎯 HRD 아카이브 과정 큐레이션
           </h1>
           <p className="text-gray-600 mb-8">
-            임직원 역량 강화를 위한 스텝별 맞춤 추천 시스템
+            임직원 관심사 맞춤 과정 추천 시스템
           </p>
 
           {/* ----------------- STEP 1 ----------------- */}
@@ -222,49 +217,49 @@ export default function App() {
           {/* ----------------- STEP 5: 결과 페이지 ----------------- */}
           {step === 5 && recommendations && (
             <div>
-              <div className="mb-6 bg-blue-50 p-4 rounded-xl border border-blue-100 text-center">
-                <p className="text-sm font-bold text-blue-900">
-                  큐레이션 과정을 바로 확인해보세요.
-                </p>
-              </div>
-
-              <h2 className="text-xl font-bold text-gray-800 mb-4">
+              <h2 className="text-xl font-bold text-gray-800 mb-6">
                 🎉 추천 학습 로드맵 결과 (총 목표: {targetHours}시간)
               </h2>
 
-              <div className="space-y-4 mb-6">
+              <div className="space-y-4 mb-8">
                 {recommendations.map((course: any, idx: number) => (
                   <div
                     key={course.id || idx}
-                    className="p-5 rounded-xl border border-gray-200 bg-white shadow-sm flex justify-between items-center"
+                    className="p-5 rounded-xl border border-gray-200 bg-white shadow-sm"
                   >
-                    <div>
+                    <div className="flex items-center">
                       <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2.5 py-1 rounded-md mr-2">
                         Module {idx + 1} ({course.hours || 2}시간)
                       </span>
-                      {/* 레벨(난이도) 표기 복원 */}
                       <span className="text-sm text-gray-500 font-medium mr-2">
                         [{course.difficulty || "초급"}]
                       </span>
-                      <h3 className="font-bold text-gray-800 mt-1 text-base">
-                        {course.title}
-                      </h3>
                     </div>
-                    <button
-                      onClick={() => handleExternalSearch(course.title)}
-                      className="bg-emerald-600 text-white px-4 py-2.5 rounded-lg text-sm font-bold hover:bg-emerald-700 transition shadow whitespace-nowrap"
-                    >
-                      해커스 아카이브에서 검색하기 🔍
-                    </button>
+                    <h3 className="font-bold text-gray-800 mt-2 text-base select-all">
+                      {course.title}
+                    </h3>
                   </div>
                 ))}
+              </div>
+
+              {/* 검색 안내 문구 및 통합 신청 랜딩 버튼 */}
+              <div className="mt-8 text-center border-t pt-6">
+                <p className="text-xs text-gray-500 mb-2 font-medium">
+                  과정 검색창에 내 과정을 검색해보세요!
+                </p>
+                <button
+                  onClick={handleArchiveLanding}
+                  className="w-full bg-emerald-600 text-white py-4 rounded-xl text-base font-bold hover:bg-emerald-700 transition shadow-lg mb-3"
+                >
+                  HRD 아카이브에서 내 과정 신청하기 ↗
+                </button>
               </div>
             </div>
           )}
         </div>
 
         {/* 하단 네비게이션 버튼 영역 */}
-        <div className="mt-8 pt-4 border-t border-gray-100">
+        <div className="mt-4 pt-4 border-t border-gray-100">
           {step === 1 && (
             <button
               disabled={selected1Depths.length === 0}
@@ -348,7 +343,7 @@ export default function App() {
                 setSelected2Depths([]);
                 setSelectedKeywords([]);
               }}
-              className="w-full bg-gray-800 text-white py-3.5 rounded-xl font-bold hover:bg-gray-900 transition shadow-lg"
+              className="w-full bg-gray-800 text-white py-3.5 rounded-xl font-bold hover:bg-gray-900 transition shadow-md"
             >
               처음부터 다시 시작하기 🔄
             </button>
