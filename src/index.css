@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-ink-50 text-ink-900 antialiased;
+  background-image:
+    radial-gradient(1200px 500px at 10% -10%, rgba(26, 168, 154, 0.12), transparent 55%),
+    radial-gradient(900px 400px at 100% 0%, rgba(18, 38, 61, 0.08), transparent 50%);
+}
+
+@media print {
+  body {
+    background: white !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  #roadmap-report {
+    box-shadow: none !important;
+    background: white !important;
+  }
+}
