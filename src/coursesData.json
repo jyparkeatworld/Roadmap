@@ -1,355 +1,333 @@
-import React, { useState } from "react";
-import data from "./coursesData.json";
-
-export default function App() {
-  const [step, setStep] = useState<number>(1);
-  const [selected1Depths, setSelected1Depths] = useState<any[]>([]);
-  const [selected2Depths, setSelected2Depths] = useState<any[]>([]);
-  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
-  const [targetHours, setTargetHours] = useState<number>(10);
-  const [recommendations, setRecommendations] = useState<any[] | null>(null);
-
-  const handle1DepthToggle = (cat: any) => {
-    if (selected1Depths.some((item) => item.id === cat.id)) {
-      setSelected1Depths(selected1Depths.filter((item) => item.id !== cat.id));
-    } else {
-      if (selected1Depths.length >= 3) {
-        alert("관심 카테고리는 최대 3개까지 복수 선택 가능합니다.");
-        return;
+{
+    "categories": [
+      {
+        "id": "ai_digital",
+        "name": "AI·디지털활용",
+        "subcategories": [
+          { "id": "gen_ai", "name": "생성형 AI", "keywords": ["ChatGPT", "프롬프트", "업무자동화", "텍스트생성", "AI활용"] },
+          { "id": "cloud_sec", "name": "클라우드·보안", "keywords": ["클라우드", "정보보안", "네트워크", "서버관리", "보안정책"] },
+          { "id": "bigdata", "name": "빅데이터", "keywords": ["데이터분석", "시각화", "R", "통계기초", "파이썬분석"] },
+          { "id": "sw_dev", "name": "소프트웨어 개발", "keywords": ["파이썬", "자바", "웹개발", "알고리즘", "API연동"] },
+          { "id": "metaverse", "name": "메타버스·XR", "keywords": ["메타버스", "가상현실", "3D", "증강현실", "콘텐츠제작"] },
+          { "id": "RPA_auto", "name": "RPA 업무자동화", "keywords": ["매크로", "업무효율", "봇구축", "프로세스", "자동화실무"] }
+        ]
+      },
+      {
+        "id": "oa_practical",
+        "name": "OA·실무툴",
+        "subcategories": [
+          { "id": "excel_master", "name": "엑셀 실무", "keywords": ["피벗테이블", "VLOOKUP", "매크로", "함수마스터", "데이터정리"] },
+          { "id": "powerpoint", "name": "파워포인트 문서작성", "keywords": ["보고서작성", "기획서", "디자인템플릿", "스마트아트", "발표자료"] },
+          { "id": "word_hwp", "name": "워드·한글", "keywords": ["공문서", "기본편집", "서식작성", "표편집", "보고서서식"] },
+          { "id": "notion_tools", "name": "협업툴(노션·슬랙)", "keywords": ["노션", "슬랙", "프로젝트관리", "위키구축", "일정관리"] },
+          { "id": "database_tool", "name": "데이터베이스 툴", "keywords": ["SQL", "Access", "DB관리", "쿼리작성", "데이터추출"] },
+          { "id": "report_design", "name": "보고서 디자인", "keywords": ["시각화", "인포그래픽", "문서디자인", "가독성", "기획서작성"] }
+        ]
+      },
+      {
+        "id": "mgmt_finance_mba_leadership",
+        "name": "경영·금융·MBA·리더십",
+        "subcategories": [
+          { "id": "mba_strategy", "name": "MBA 전략경영", "keywords": ["경영전략", "비즈니스모델", "혁신", "경쟁우위", "트렌드분석"] },
+          { "id": "finance_acc", "name": "재무·회계", "keywords": ["재무제표", "원가회계", "세무관리", "손익분석", "자금운용"] },
+          { "id": "leadership", "name": "코칭 리더십", "keywords": ["조직관리", "동기부여", "소통", "피드백", "갈등해결"] },
+          { "id": "operations", "name": "생산·품질관리", "keywords": ["6시그마", "SCM", "공정관리", "품질혁신", "원가절감"] },
+          { "id": "economics", "name": "경제 트렌드", "keywords": ["거시경제", "환율", "시장분석", "금리동향", "글로벌경제"] },
+          { "id": "risk_mgmt", "name": "리스크 관리", "keywords": ["위험관리", "컴플라이언스", "내부통제", "감사", "법률대응"] }
+        ]
+      },
+      {
+        "id": "corp_org_competency",
+        "name": "기업·조직역량",
+        "subcategories": [
+          { "id": "org_culture", "name": "조직문화 개선", "keywords": ["일하는방식", "온보딩", "심리안전망", "조직몰입", "소통문화"] },
+          { "id": "compliance", "name": "컴플라이언스·법정", "keywords": ["법정의무교육", "윤리경영", "보안법규", "개인정보보호", "직장내성희롱예방"] },
+          { "id": "problem_solving", "name": "문제해결·기획", "keywords": ["로직트리", "보고서작성", "창의적사고", "MECE", "기획력"] },
+          { "id": "cs_management", "name": "고객만족(CS)", "keywords": ["고객응대", "서비스마인드", "VOC", "고객경험", "응대스킬"] },
+          { "id": "negotiation", "name": "협상·설득", "keywords": ["비즈니스협상", "갈등관리", "설득스피치", "윈윈전략", "설득기법"] },
+          { "id": "innovation_mind", "name": "혁신 마인드셋", "keywords": ["변화관리", "도 도전정신", "애자일", "창의력", "실행력"] }
+        ]
+      },
+      {
+        "id": "data_dev_it",
+        "name": "데이터·개발·IT",
+        "subcategories": [
+          { "id": "fullstack", "name": "풀스택 웹개발", "keywords": ["React", "Node.js", "API", "프론트엔드", "백엔드"] },
+          { "id": "app_dev", "name": "모바일 앱 개발", "keywords": ["Flutter", "iOS", "Android", "크로스플랫폼", "앱배포"] },
+          { "id": "devops", "name": "데브옵스·인프라", "keywords": ["Docker", "Kubernetes", "CI/CD", "AWS", "인프라구축"] },
+          { "id": "ai_ml", "name": "머신러닝·딥러닝", "keywords": ["텐서플로우", "파이토치", "AI모델", "딥러닝기초", "자연어처리"] },
+          { "id": "it_pm", "name": "IT 기획·PM", "keywords": ["애자일", "스프린트", "요구사항정의", "프로젝트관리", "백로그관리"] },
+          { "id": "cyber_security", "name": "정보보호·네트워크", "keywords": ["방화벽", "해킹대응", "보안진단", "취약점", "암호화"] }
+        ]
+      },
+      {
+        "id": "design_creative",
+        "name": "디자인·크리에이티브",
+        "subcategories": [
+          { "id": "ui_ux", "name": "UI/UX 디자인", "keywords": ["피그마", "와이어프레임", "사용자경험", "프로토타입", "인터페이스"] },
+          { "id": "graphic", "name": "그래픽 디자인", "keywords": ["포토샵", "일러스트", "브랜딩", "시각디자인", "타이포그래피"] },
+          { "id": "video_edit", "name": "영상 편집", "keywords": ["프리미어", "애프터이펙트", "유튜브편집", "모션그래픽", "색보정"] },
+          { "id": "content_prod", "name": "콘텐츠 제작", "keywords": ["카드뉴스", "상세페이지", "블로그디자인", "배너제작", "홍보물"] },
+          { "id": "three_d", "name": "3D 모델링", "keywords": ["블렌더", "시각화", "렌더링", "3D디자인", "오브젝트"] },
+          { "id": "brand_design", "name": "브랜드 아이덴티티", "keywords": ["BI", "CI", "패키지디자인", "경험디자인", "컨셉추얼"] }
+        ]
+      },
+      {
+        "id": "marketing_branding",
+        "name": "마케팅·브랜딩",
+        "subcategories": [
+          { "id": "digital_mkt", "name": "디지털 마케팅", "keywords": ["퍼포먼스마케팅", "GA4", "SNS광고", "매체분석", "전환캠페인"] },
+          { "id": "brand_mkt", "name": "브랜드 전략", "keywords": ["스토리텔링", "포지셔닝", "아이덴티티", "브랜드구축", "충성고객"] },
+          { "id": "content_mkt", "name": "콘텐츠 마케팅", "keywords": ["바이럴", "SEO", "카피라이팅", "콘텐츠기획", "채널운영"] },
+          { "id": "growth_hacking", "name": "그로스 해킹", "keywords": ["데이터드리븐", "A/B테스트", "전환율", "퍼널분석", "지표개선"] },
+          { "id": "global_mkt", "name": "글로벌 마케팅", "keywords": ["해외진출", "K-컬처", "수출마케팅", "글로벌채널", "현지화전략"] },
+          { "id": "influencer_mkt", "name": "인플루언서 마케팅", "keywords": ["제휴마케팅", "바이럴마케팅", "콜라보", "크리에이터", "SNS소통"] }
+        ]
+      },
+      {
+        "id": "foreign_language",
+        "name": "외국어",
+        "subcategories": [
+          { "id": "biz_english", "name": "비즈니스 영어", "keywords": ["이메일영어", "영어회의", "오픽", "비즈니스회화", "협상영어"] },
+          { "id": "global_conv", "name": "글로벌 회화", "keywords": ["생활영어", "발음교정", "실전회화", "청취훈련", "스피킹"] },
+          { "id": "chinese", "name": "비즈니스 중국어", "keywords": ["회화기초", "중국무역", "HSK", "비즈니스중국어", "현지회화"] },
+          { "id": "japanese", "name": "비즈니스 일본어", "keywords": ["일본식표현", "면접일본어", "JLPT", "비즈니스매너", "일본어회화"] },
+          { "id": "other_lang", "name": "제2외국어 특강", "keywords": ["스페인어", "베트남어", "문화이해", "기초회화", "특수어학"] },
+          { "id": "global_etiquette", "name": "글로벌 비즈니스 매너", "keywords": ["해외문화", "비즈니스에티켓", "글로벌소통", "매너", "의전"] }
+        ]
+      },
+      {
+        "id": "humanities_lifestyle_selfdev",
+        "name": "인문·교양·라이프·자기개발",
+        "subcategories": [
+          { "id": "humanities", "name": "인문학·철학", "keywords": ["역사", "인문고전", "예술사", "철학적사고", "교양지식"] },
+          { "id": "mindset", "name": "마인드셋·멘탈", "keywords": ["회복탄력성", "번아웃극복", "시간관리", "자기동기부여", "스트레스관리"] },
+          { "id": "health_wellness", "name": "건강·웰니스", "keywords": ["스트레스해소", "수면관리", "바른자세", "체력관리", "멘탈케어"] },
+          { "id": "hobby_life", "name": "취미·라이프스타일", "keywords": ["인테리어", "여행", "음악감상", "취미개발", "여가생활"] },
+          { "id": "speech_comms", "name": "스피치·커뮤니케이션", "keywords": ["보이스스타일링", "프레젠테이션", "대화법", "스피치능력", "비언어커뮤니케이션"] },
+          { "id": "career_growth", "name": "커리어 성장", "keywords": ["자기계발", "목표달성", "네트워킹", "역량강화", "비전설정"] }
+        ]
+      },
+      {
+        "id": "certification",
+        "name": "자격증",
+        "subcategories": [
+          { "id": "it_cert", "name": "IT·디지털 자격증", "keywords": ["정보처리기사", "컴활1급", "SQLD", "빅데이터분석기사", "네트워크관리사"] },
+          { "id": "finance_cert", "name": "금융·회계 자격증", "keywords": ["재경관리사", "전산회계", "투자자산운용사", "회계관리", "펀드투자"] },
+          { "id": "hr_cert", "name": "인사·노무 자격증", "keywords": ["노무사", "직업상담사", "HR전문가", "임금관리", "근로기준법"] },
+          { "id": "lang_cert", "name": "어학 시험 대비", "keywords": ["토익", "오픽", "토ส", "텝스", "아이엘츠"] },
+          { "id": "tech_cert", "name": "기술·안전 자격증", "keywords": ["산업안전기사", "위험물", "건축기사", "소방설비", "품질관리기사"] },
+          { "id": "management_cert", "name": "경영·프로젝트 자격증", "keywords": ["PMP", "품질관리사", "식스시그마", "물류관리사", "유통관리사"] }
+        ]
       }
-      setSelected1Depths([...selected1Depths, cat]);
-    }
-    setSelected2Depths([]);
-    setSelectedKeywords([]);
-  };
-
-  const handle2DepthToggle = (sub: any) => {
-    if (selected2Depths.some((item) => item.id === sub.id)) {
-      setSelected2Depths(selected2Depths.filter((item) => item.id !== sub.id));
-    } else {
-      if (selected2Depths.length >= 3) {
-        alert("세부 분야는 최대 3개까지 복수 선택 가능합니다.");
-        return;
+    ],
+    "courses": [
+      {
+        "id": 1,
+        "title": "실무자라면 꼭 알아야 할 여신법률 [여신거래정립편]",
+        "category": "mgmt_finance_mba_leadership",
+        "subcategory": "finance_acc",
+        "keyword": "세무관리",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 2,
+        "title": "[해커스 PRO MBA] 마케팅",
+        "category": "mgmt_finance_mba_leadership",
+        "subcategory": "mba_strategy",
+        "keyword": "경영전략",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 3,
+        "title": "[고급] 그림으로 배우는 일본어 한자&작문",
+        "category": "foreign_language",
+        "subcategory": "japanese",
+        "keyword": "JLPT",
+        "hours": 2,
+        "difficulty": "고급"
+      },
+      {
+        "id": 4,
+        "title": "[해커스 PRO MBA] 회계",
+        "category": "mgmt_finance_mba_leadership",
+        "subcategory": "finance_acc",
+        "keyword": "재무제표",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 5,
+        "title": "[해커스 PRO MBA] 재무관리",
+        "category": "mgmt_finance_mba_leadership",
+        "subcategory": "finance_acc",
+        "keyword": "손익분석",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 6,
+        "title": "[해커스 PRO MBA] 인적자원관리",
+        "category": "corp_org_competency",
+        "subcategory": "org_culture",
+        "keyword": "온보딩",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 7,
+        "title": "가장 쉽게 배우는 일러스트, 기초부터 응용까지",
+        "category": "design_creative",
+        "subcategory": "graphic",
+        "keyword": "일러스트",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 8,
+        "title": "누구나 R기 쉬운 R 데이터 분석 프로젝트",
+        "category": "ai_digital",
+        "subcategory": "bigdata",
+        "keyword": "R",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 9,
+        "title": "잘 써야 잘 읽힌다! 직장인을 위한 비즈니스 글쓰기 수업",
+        "category": "corp_org_competency",
+        "subcategory": "problem_solving",
+        "keyword": "보고서작성",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 10,
+        "title": "상대의 Yes를 끌어내는 [성공적인 협상 원칙]",
+        "category": "corp_org_competency",
+        "subcategory": "negotiation",
+        "keyword": "비즈니스협상",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 11,
+        "title": "MZ후배가 어려운 요즘선배를 위한, 조직 내 세대소통",
+        "category": "corp_org_competency",
+        "subcategory": "org_culture",
+        "keyword": "소통문화",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 12,
+        "title": "실무자라면 꼭 알아야 할 [의심거래보고(STR) 작성법]",
+        "category": "mgmt_finance_mba_leadership",
+        "subcategory": "finance_acc",
+        "keyword": "세무관리",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 13,
+        "title": "아는 만큼 지킨다! 공정거래를 위한 하도급법 교육",
+        "category": "corp_org_competency",
+        "subcategory": "compliance",
+        "keyword": "윤리경영",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 14,
+        "title": "우리 병원 차별화 전략! 4주기 의료인증의 모든 것",
+        "category": "corp_org_competency",
+        "subcategory": "cs_management",
+        "keyword": "고객응대",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 15,
+        "title": "유능한 인재를 선점하는 [스마트한 면접관의 모든 것]",
+        "category": "corp_org_competency",
+        "subcategory": "org_culture",
+        "keyword": "온보딩",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 16,
+        "title": "가장 쉽게 배우는 Spring(스프링), 기초부터 실무까지",
+        "category": "ai_digital",
+        "subcategory": "sw_dev",
+        "keyword": "자바",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 17,
+        "title": "인사쟁이라면 꼭 알아야 하는 [인사 실무의 모든 것]",
+        "category": "corp_org_competency",
+        "subcategory": "org_culture",
+        "keyword": "조직몰입",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 18,
+        "title": "성과를 끌어올리는 리얼영업",
+        "category": "marketing_branding",
+        "subcategory": "digital_mkt",
+        "keyword": "SNS광고",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 19,
+        "title": "우리 병원 차별화 전략! 병원CS의 모든 것",
+        "category": "corp_org_competency",
+        "subcategory": "cs_management",
+        "keyword": "VOC",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 20,
+        "title": "설계부터 특허까지, R&D 기획의 모든 것",
+        "category": "corp_org_competency",
+        "subcategory": "problem_solving",
+        "keyword": "기획력",
+        "hours": 2,
+        "difficulty": "고급"
+      },
+      {
+        "id": 21,
+        "title": "300% 활용! 칼퇴를 부르는 한글2022의 모든 것",
+        "category": "oa_practical",
+        "subcategory": "word_hwp",
+        "keyword": "공문서",
+        "hours": 2,
+        "difficulty": "초급"
+      },
+      {
+        "id": 22,
+        "title": "핵심만 쏙! 실무에 바로 적용하는 머신러닝",
+        "category": "ai_digital",
+        "subcategory": "ai_ml",
+        "keyword": "AI모델",
+        "hours": 2,
+        "difficulty": "중급"
+      },
+      {
+        "id": 23,
+        "title": "기획에서 판매까지! 이커머스 실무바이블",
+        "category": "marketing_branding",
+        "subcategory": "digital_mkt",
+        "keyword": "퍼포먼스마케팅",
+        "hours": 2,
+        "difficulty": "중급"
       }
-      setSelected2Depths([...selected2Depths, sub]);
-    }
-    setSelectedKeywords([]);
-  };
-
-  const handleKeywordToggle = (keyword: string) => {
-    if (selectedKeywords.includes(keyword)) {
-      setSelectedKeywords(selectedKeywords.filter((k) => k !== keyword));
-    } else {
-      if (selectedKeywords.length >= 3) {
-        alert("키워드는 최대 3개까지 선택 가능합니다.");
-        return;
-      }
-      setSelectedKeywords([...selectedKeywords, keyword]);
-    }
-  };
-
-  const handleGenerateRecommendation = () => {
-    if (selectedKeywords.length === 0) {
-      alert("최소 1개 이상의 키워드를 선택해주세요.");
-      return;
-    }
-
-    let matched = data.courses.filter(
-      (course: any) =>
-        selectedKeywords.includes(course.keyword) ||
-        selected2Depths.some((sub) => sub.id === course.subcategory)
-    );
-
-    if (matched.length === 0) {
-      matched = data.courses;
-    }
-
-    const uniqueMatched = Array.from(new Set(matched.map((c: any) => c.id))).map(
-      (id) => matched.find((c: any) => c.id === id)
-    );
-
-    const requiredCount = targetHours / 2;
-    let finalCourses = uniqueMatched.slice(0, requiredCount);
-
-    while (finalCourses.length < requiredCount && data.courses.length > 0) {
-      const nextCourse = data.courses[finalCourses.length % data.courses.length];
-      finalCourses.push(nextCourse);
-    }
-
-    setRecommendations(finalCourses);
-    setStep(5);
-  };
-
-  const handleArchiveLanding = () => {
-    window.open("https://archive.hackershrd.com", "_blank");
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-50 p-6 font-sans flex items-center justify-center">
-      <div className="w-full max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-12 min-h-[720px] flex flex-col justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            🎯 HRD 아카이브 과정 큐레이션
-          </h1>
-          <p className="text-gray-600 mb-8">
-            임직원 역량 강화를 위한 스텝별 맞춤 추천 시스템
-          </p>
-
-          {/* ----------------- STEP 1 ----------------- */}
-          {step === 1 && (
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-bold text-gray-800">
-                  [Step 1] 1단계: 관심 카테고리 선택 (최대 3개 복수선택)
-                </h2>
-                <span className="text-sm font-semibold text-blue-600">1 / 4 단계</span>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
-                {data.categories.map((cat) => {
-                  const isSelected = selected1Depths.some((item) => item.id === cat.id);
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => handle1DepthToggle(cat)}
-                      className={`p-4 rounded-xl border text-left transition ${
-                        isSelected
-                          ? "bg-blue-600 text-white border-blue-600 shadow-md"
-                          : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
-                      }`}
-                    >
-                      {cat.name}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* ----------------- STEP 2 ----------------- */}
-          {step === 2 && (
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-bold text-gray-800">
-                  [Step 2] 2단계: 세부 분야 선택 (최대 3개 복수선택)
-                </h2>
-                <span className="text-sm font-semibold text-blue-600">2 / 4 단계</span>
-              </div>
-              <div className="grid grid-cols-2 gap-3 mb-10">
-                {selected1Depths.flatMap((cat) => cat.subcategories).map((sub: any) => {
-                  const isSelected = selected2Depths.some((item) => item.id === sub.id);
-                  return (
-                    <button
-                      key={sub.id}
-                      onClick={() => handle2DepthToggle(sub)}
-                      className={`p-4 rounded-xl border text-left transition ${
-                        isSelected
-                          ? "bg-indigo-600 text-white border-indigo-600 shadow-md"
-                          : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
-                      }`}
-                    >
-                      {sub.name}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* ----------------- STEP 3 ----------------- */}
-          {step === 3 && (
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-bold text-gray-800">
-                  [Step 3] 3단계: 핵심 키워드 선택 (총 5개 중 최대 3개 선택)
-                </h2>
-                <span className="text-sm font-semibold text-blue-600">3 / 4 단계</span>
-              </div>
-              <div className="flex flex-wrap gap-2.5 mb-10">
-                {Array.from(
-                  new Set(selected2Depths.flatMap((sub) => sub.keywords))
-                ).map((kw: any) => {
-                  const isSelected = selectedKeywords.includes(kw);
-                  return (
-                    <button
-                      key={kw}
-                      onClick={() => handleKeywordToggle(kw)}
-                      className={`px-5 py-2.5 rounded-full border text-sm font-medium transition ${
-                        isSelected
-                          ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
-                          : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"
-                      }`}
-                    >
-                      #{kw}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* ----------------- STEP 4 ----------------- */}
-          {step === 4 && (
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-bold text-gray-800">
-                  [Step 4] 목표 학습 시간 선택 (2시간 모듈 자동 조합)
-                </h2>
-                <span className="text-sm font-semibold text-blue-600">4 / 4 단계</span>
-              </div>
-              <div className="flex gap-4 mb-10">
-                {[5, 10, 15].map((hours) => (
-                  <button
-                    key={hours}
-                    onClick={() => setTargetHours(hours)}
-                    className={`flex-1 py-4 rounded-xl border text-base font-medium ${
-                      targetHours === hours
-                        ? "bg-purple-600 text-white border-purple-600 shadow-md"
-                        : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
-                    }`}
-                  >
-                    {hours}시간 과정
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* ----------------- STEP 5: 결과 페이지 ----------------- */}
-          {step === 5 && recommendations && (
-            <div>
-              <h2 className="text-xl font-bold text-gray-800 mb-6">
-                🎉 추천 학습 로드맵 결과 (총 목표: {targetHours}시간)
-              </h2>
-
-              <div className="space-y-4 mb-8">
-                {recommendations.map((course: any, idx: number) => (
-                  <div
-                    key={course.id || idx}
-                    className="p-5 rounded-xl border border-gray-200 bg-white shadow-sm"
-                  >
-                    <div className="flex items-center">
-                      <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2.5 py-1 rounded-md mr-2">
-                        Module {idx + 1} ({course.hours || 2}시간)
-                      </span>
-                      <span className="text-sm text-gray-500 font-medium mr-2">
-                        [{course.difficulty || "초급"}]
-                      </span>
-                    </div>
-                    <h3 className="font-bold text-gray-800 mt-2 text-base select-all">
-                      {course.title}
-                    </h3>
-                  </div>
-                ))}
-              </div>
-
-              {/* 검색 안내 문구 및 통합 신청 랜딩 버튼 */}
-              <div className="mt-8 text-center border-t pt-6">
-                <p className="text-xs text-gray-500 mb-2 font-medium">
-                  과정 검색창에 내 과정을 검색해보세요!
-                </p>
-                <button
-                  onClick={handleArchiveLanding}
-                  className="w-full bg-emerald-600 text-white py-4 rounded-xl text-base font-bold hover:bg-emerald-700 transition shadow-lg mb-3"
-                >
-                  HRD 아카이브에서 내 과정 신청하기 ↗
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* 하단 네비게이션 버튼 영역 */}
-        <div className="mt-4 pt-4 border-t border-gray-100">
-          {step === 1 && (
-            <button
-              disabled={selected1Depths.length === 0}
-              onClick={() => setStep(2)}
-              className={`w-full py-3.5 rounded-xl font-bold shadow-lg transition ${
-                selected1Depths.length > 0
-                  ? "bg-blue-600 text-white hover:bg-blue-700"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
-              }`}
-            >
-              다음 단계로 ➡
-            </button>
-          )}
-
-          {step === 2 && (
-            <div className="flex gap-3">
-              <button
-                onClick={() => setStep(1)}
-                className="w-1/3 bg-gray-200 text-gray-700 py-3.5 rounded-xl font-bold hover:bg-gray-300 transition"
-              >
-                ⬅ 이전
-              </button>
-              <button
-                disabled={selected2Depths.length === 0}
-                onClick={() => setStep(3)}
-                className={`w-2/3 py-3.5 rounded-xl font-bold shadow-lg transition ${
-                  selected2Depths.length > 0
-                    ? "bg-blue-600 text-white hover:bg-blue-700"
-                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                }`}
-              >
-                다음 단계로 ➡
-              </button>
-            </div>
-          )}
-
-          {step === 3 && (
-            <div className="flex gap-3">
-              <button
-                onClick={() => setStep(2)}
-                className="w-1/3 bg-gray-200 text-gray-700 py-3.5 rounded-xl font-bold hover:bg-gray-300 transition"
-              >
-                ⬅ 이전
-              </button>
-              <button
-                disabled={selectedKeywords.length === 0}
-                onClick={() => setStep(4)}
-                className={`w-2/3 py-3.5 rounded-xl font-bold shadow-lg transition ${
-                  selectedKeywords.length > 0
-                    ? "bg-blue-600 text-white hover:bg-blue-700"
-                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                }`}
-              >
-                다음 단계로 ➡
-              </button>
-            </div>
-          )}
-
-          {step === 4 && (
-            <div className="flex gap-3">
-              <button
-                onClick={() => setStep(3)}
-                className="w-1/3 bg-gray-200 text-gray-700 py-3.5 rounded-xl font-bold hover:bg-gray-300 transition"
-              >
-                ⬅ 이전
-              </button>
-              <button
-                onClick={handleGenerateRecommendation}
-                className="w-2/3 bg-blue-600 text-white py-3.5 rounded-xl font-bold shadow-lg hover:bg-blue-700 transition"
-              >
-                맞춤형 큐레이션 결과 생성하기 ✨
-              </button>
-            </div>
-          )}
-
-          {step === 5 && (
-            <button
-              onClick={() => {
-                setStep(1);
-                setSelected1Depths([]);
-                setSelected2Depths([]);
-                setSelectedKeywords([]);
-              }}
-              className="w-full bg-gray-800 text-white py-3.5 rounded-xl font-bold hover:bg-gray-900 transition shadow-md"
-            >
-              처음부터 다시 시작하기 🔄
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
+    ]
+  }

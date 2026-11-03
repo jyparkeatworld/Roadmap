@@ -68,7 +68,7 @@ export default function App() {
       (id) => matched.find((c: any) => c.id === id)
     );
 
-    const requiredCount = targetHours / 2;
+    const requiredCount = Math.max(1, Math.floor(targetHours / 2));
     let finalCourses = uniqueMatched.slice(0, requiredCount);
 
     while (finalCourses.length < requiredCount && data.courses.length > 0) {
@@ -104,14 +104,14 @@ export default function App() {
                 </h2>
                 <span className="text-sm font-semibold text-blue-600">1 / 4 단계</span>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-10">
                 {data.categories.map((cat) => {
                   const isSelected = selected1Depths.some((item) => item.id === cat.id);
                   return (
                     <button
                       key={cat.id}
                       onClick={() => handle1DepthToggle(cat)}
-                      className={`p-4 rounded-xl border text-left transition ${
+                      className={`p-3 rounded-xl border text-center text-sm font-medium transition ${
                         isSelected
                           ? "bg-blue-600 text-white border-blue-600 shadow-md"
                           : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
@@ -134,14 +134,14 @@ export default function App() {
                 </h2>
                 <span className="text-sm font-semibold text-blue-600">2 / 4 단계</span>
               </div>
-              <div className="grid grid-cols-2 gap-3 mb-10">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10 max-h-[380px] overflow-y-auto pr-1">
                 {selected1Depths.flatMap((cat) => cat.subcategories).map((sub: any) => {
                   const isSelected = selected2Depths.some((item) => item.id === sub.id);
                   return (
                     <button
                       key={sub.id}
                       onClick={() => handle2DepthToggle(sub)}
-                      className={`p-4 rounded-xl border text-left transition ${
+                      className={`p-3.5 rounded-xl border text-left text-sm font-medium transition ${
                         isSelected
                           ? "bg-indigo-600 text-white border-indigo-600 shadow-md"
                           : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
@@ -160,7 +160,7 @@ export default function App() {
             <div>
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-bold text-gray-800">
-                  [Step 3] 3단계: 핵심 키워드 선택 (총 5개 중 최대 3개 선택)
+                  [Step 3] 3단계: 핵심 키워드 선택 (최대 3개 선택)
                 </h2>
                 <span className="text-sm font-semibold text-blue-600">3 / 4 단계</span>
               </div>
@@ -173,7 +173,7 @@ export default function App() {
                     <button
                       key={kw}
                       onClick={() => handleKeywordToggle(kw)}
-                      className={`px-5 py-2.5 rounded-full border text-sm font-medium transition ${
+                      className={`px-4.5 py-2 rounded-full border text-sm font-medium transition ${
                         isSelected
                           ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
                           : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"
@@ -192,22 +192,22 @@ export default function App() {
             <div>
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-bold text-gray-800">
-                  [Step 4] 목표 학습 시간 선택 (2시간 모듈 자동 조합)
+                  [Step 4] 목표 학습 시간 선택
                 </h2>
                 <span className="text-sm font-semibold text-blue-600">4 / 4 단계</span>
               </div>
-              <div className="flex gap-4 mb-10">
-                {[5, 10, 15].map((hours) => (
+              <div className="grid grid-cols-4 gap-3 mb-10">
+                {[2, 3, 4, 5, 6, 8, 10, 12, 15].map((hours) => (
                   <button
                     key={hours}
                     onClick={() => setTargetHours(hours)}
-                    className={`flex-1 py-4 rounded-xl border text-base font-medium ${
+                    className={`py-3.5 rounded-xl border text-base font-medium transition ${
                       targetHours === hours
                         ? "bg-purple-600 text-white border-purple-600 shadow-md"
                         : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
                     }`}
                   >
-                    {hours}시간 과정
+                    {hours}시간
                   </button>
                 ))}
               </div>
@@ -217,39 +217,39 @@ export default function App() {
           {/* ----------------- STEP 5: 결과 페이지 ----------------- */}
           {step === 5 && recommendations && (
             <div>
-              <h2 className="text-xl font-bold text-gray-800 mb-6">
+              <h2 className="text-xl font-bold text-gray-800 mb-4">
                 🎉 추천 학습 로드맵 결과 (총 목표: {targetHours}시간)
               </h2>
 
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 mb-6 max-h-[340px] overflow-y-auto pr-1">
                 {recommendations.map((course: any, idx: number) => (
                   <div
                     key={course.id || idx}
-                    className="p-5 rounded-xl border border-gray-200 bg-white shadow-sm"
+                    className="p-4 rounded-xl border border-gray-200 bg-white shadow-sm"
                   >
                     <div className="flex items-center">
-                      <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2.5 py-1 rounded-md mr-2">
+                      <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-0.5 rounded-md mr-2">
                         Module {idx + 1} ({course.hours || 2}시간)
                       </span>
-                      <span className="text-sm text-gray-500 font-medium mr-2">
+                      <span className="text-xs text-gray-500 font-medium mr-2">
                         [{course.difficulty || "초급"}]
                       </span>
                     </div>
-                    <h3 className="font-bold text-gray-800 mt-2 text-base select-all">
+                    <h3 className="font-bold text-gray-800 mt-1.5 text-sm select-all">
                       {course.title}
                     </h3>
                   </div>
                 ))}
               </div>
 
-              {/* 검색 안내 문구 및 통합 신청 랜딩 버튼 */}
-              <div className="mt-8 text-center border-t pt-6">
-                <p className="text-xs text-gray-500 mb-2 font-medium">
+              {/* 하단 통합 랜딩 버튼 및 안내 문구 */}
+              <div className="mt-4 text-center border-t pt-4">
+                <p className="text-xs text-gray-500 mb-1.5 font-medium">
                   과정 검색창에 내 과정을 검색해보세요!
                 </p>
                 <button
                   onClick={handleArchiveLanding}
-                  className="w-full bg-emerald-600 text-white py-4 rounded-xl text-base font-bold hover:bg-emerald-700 transition shadow-lg mb-3"
+                  className="w-full bg-emerald-600 text-white py-3.5 rounded-xl text-base font-bold hover:bg-emerald-700 transition shadow-lg"
                 >
                   HRD 아카이브에서 내 과정 신청하기 ↗
                 </button>
