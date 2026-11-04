@@ -1,333 +1,114 @@
 {
     "categories": [
       {
-        "id": "ai_digital",
-        "name": "AI·디지털활용",
+        "id": "ai_dt",
+        "name": "AI·디지털전환(DT)",
         "subcategories": [
-          { "id": "gen_ai", "name": "생성형 AI", "keywords": ["ChatGPT", "프롬프트", "업무자동화", "텍스트생성", "AI활용"] },
-          { "id": "cloud_sec", "name": "클라우드·보안", "keywords": ["클라우드", "정보보안", "네트워크", "서버관리", "보안정책"] },
-          { "id": "bigdata", "name": "빅데이터", "keywords": ["데이터분석", "시각화", "R", "통계기초", "파이썬분석"] },
-          { "id": "sw_dev", "name": "소프트웨어 개발", "keywords": ["파이썬", "자바", "웹개발", "알고리즘", "API연동"] },
-          { "id": "metaverse", "name": "메타버스·XR", "keywords": ["메타버스", "가상현실", "3D", "증강현실", "콘텐츠제작"] },
-          { "id": "RPA_auto", "name": "RPA 업무자동화", "keywords": ["매크로", "업무효율", "봇구축", "프로세스", "자동화실무"] }
+          { "id": "ai_basic", "name": "생성형 AI 업무 활용법", "keywords": ["챗GPT", "업무자동화", "프롬프트", "생성형AI", "AI툴", "생산성향상", "AI기획", "LLM실무"] },
+          { "id": "big_data", "name": "빅데이터 분석 기초", "keywords": ["데이터분석", "시각화", "파이썬", "SQL", "데이터리터러시", "통계기초", "대시보드", "데이터기반의사결정"] },
+          { "id": "rpa_auto", "name": "RPA 업무 자동화 실무", "keywords": ["RPA", "반복업무절감", "효율성", "매크로", "워크플로우", "업무개선", "자동화설계", "프로세스혁신"] },
+          { "id": "cloud_sec", "name": "클라우드 및 보안 트렌드", "keywords": ["클라우드", "정보보안", "인프라", "AWS", "개인정보보호", "보안수칙", "사이버보안", "디지털인프라"] },
+          { "id": "digital_culture", "name": "디지털 트랜스포메이션 마인드셋", "keywords": ["DT전략", "혁신", "변화관리", "디지털트렌드", "조직혁신", "애자일", "신기술동향", "디지털리더십"] }
         ]
       },
       {
-        "id": "oa_practical",
-        "name": "OA·실무툴",
+        "id": "marketing_brand",
+        "name": "마케팅·브랜드",
         "subcategories": [
-          { "id": "excel_master", "name": "엑셀 실무", "keywords": ["피벗테이블", "VLOOKUP", "매크로", "함수마스터", "데이터정리"] },
-          { "id": "powerpoint", "name": "파워포인트 문서작성", "keywords": ["보고서작성", "기획서", "디자인템플릿", "스마트아트", "발표자료"] },
-          { "id": "word_hwp", "name": "워드·한글", "keywords": ["공문서", "기본편집", "서식작성", "표편집", "보고서서식"] },
-          { "id": "notion_tools", "name": "협업툴(노션·슬랙)", "keywords": ["노션", "슬랙", "프로젝트관리", "위키구축", "일정관리"] },
-          { "id": "database_tool", "name": "데이터베이스 툴", "keywords": ["SQL", "Access", "DB관리", "쿼리작성", "데이터추출"] },
-          { "id": "report_design", "name": "보고서 디자인", "keywords": ["시각화", "인포그래픽", "문서디자인", "가독성", "기획서작성"] }
+          { "id": "digital_marketing", "name": "디지털 퍼포먼스 마케팅", "keywords": ["퍼포먼스마케팅", "ROI", "데이터분석", "GA4", "광고집행", "전환율개선", "타겟팅", "A/B테스트"] },
+          { "id": "content_marketing", "name": "콘텐츠 마케팅 & SNS", "keywords": ["콘텐츠마케팅", "SNS운영", "스토리텔링", "카피라이팅", "숏폼", "바이럴", "브랜드채널", "인스타그램"] },
+          { "id": "brand_strategy", "name": "브랜드 전략 및 포지셔닝", "keywords": ["브랜딩", "포지셔닝", "고객경험", "브랜드아이덴티티", "브랜드네이밍", "리브랜딩", "가치제안", "브랜드팬덤"] },
+          { "id": "ux_ui_m", "name": "고객 경험(UX) 마케팅", "keywords": ["UX", "고객여정", "전환율", "유저리서치", "서비스기획", "고객리텐션", "CX개선", "페르소나"] },
+          { "id": "global_m", "name": "글로벌 시장 마케팅", "keywords": ["해외진출", "글로벌트렌드", "수출마케팅", "현지화", "크로스보더", "해외SNS", "글로벌브랜딩", "해외시장조사"] }
+        ]
+      },
+      {
+        "id": "communication",
+        "name": "커뮤니케이션·소통",
+        "subcategories": [
+          { "id": "biz_writing", "name": "비즈니스 문서 작성법", "keywords": ["보고서작성", "이메일소통", "기획서", "비즈니스글쓰기", "한장기획서", "두괄식작성", "문서요약", "논리적글쓰기"] },
+          { "id": "conflict_res", "name": "갈등 관리 및 협상 스킬", "keywords": ["갈등관리", "협상", "윈윈소통", "중재", "감정조절", "관계관리", "비폭력대화", "설득의기술"] },
+          { "id": "presentation", "name": "설득력 있는 프레젠테이션", "keywords": ["프레젠테이션", "스피치", "설득", "발표스킬", "PT스토리", "슬라이드디자인", "보이스트레이닝", "질의응답"] },
+          { "id": "feedback_sk", "name": "스마트한 피드백과 코칭", "keywords": ["피드백", "코칭", "성장대화", "1on1", "동기부여", "경청", "질문기술", "성과코칭"] },
+          { "id": "gen_sync", "name": "세대 간 소통과 공감 리더십", "keywords": ["세대갈등해소", "조직문화", "공감소통", "상호존중", "팀워크", "수평적소통", "심리적안정감", "포용적리더십"] }
+        ]
+      },
+      {
+        "id": "language_global",
+        "name": "어학·글로벌 비즈니스",
+        "subcategories": [
+          { "id": "biz_english", "name": "실무 비즈니스 영어 회화", "keywords": ["비즈니스영어", "전화영어", "오피스회화", "영어회의", "영문이메일", "영어프레젠테이션", "실무표현", "글로벌스피킹"] },
+          { "id": "global_etiquette", "name": "글로벌 비즈니스 매너", "keywords": ["비즈니스매너", "해외예절", "문화이해", "글로벌에티켓", "다문화소통", "의전", "국제매너", "해외출장실무"] },
+          { "id": "global_negotiation", "name": "글로벌 협상 전략", "keywords": ["해외협상", "계약서", "비즈니스법무", "영문계약", "국제계약", "리스크관리", "글로벌딜", "크로스보더협상"] },
+          { "id": "second_lang", "name": "제2외국어 기초 실무", "keywords": ["중국어기초", "일본어기초", "기본회화", "비즈니스중국어", "비즈니스일본어", "실무외국어", "현지표현", "외국어기초"] },
+          { "id": "global_mind", "name": "다문화 이해와 글로벌 마인드", "keywords": ["다문화", "글로벌역량", "시야확장", "글로벌트렌드", "세계시각", "글로벌리더십", "글로벌조직", "국제감각"] }
         ]
       },
       {
         "id": "mgmt_finance_mba_leadership",
-        "name": "경영·금융·MBA·리더십",
+        "name": "경영·재무·리더십",
         "subcategories": [
-          { "id": "mba_strategy", "name": "MBA 전략경영", "keywords": ["경영전략", "비즈니스모델", "혁신", "경쟁우위", "트렌드분석"] },
-          { "id": "finance_acc", "name": "재무·회계", "keywords": ["재무제표", "원가회계", "세무관리", "손익분석", "자금운용"] },
-          { "id": "leadership", "name": "코칭 리더십", "keywords": ["조직관리", "동기부여", "소통", "피드백", "갈등해결"] },
-          { "id": "operations", "name": "생산·품질관리", "keywords": ["6시그마", "SCM", "공정관리", "품질혁신", "원가절감"] },
-          { "id": "economics", "name": "경제 트렌드", "keywords": ["거시경제", "환율", "시장분석", "금리동향", "글로벌경제"] },
-          { "id": "risk_mgmt", "name": "리스크 관리", "keywords": ["위험관리", "컴플라이언스", "내부통제", "감사", "법률대응"] }
+          { "id": "finance_acc", "name": "재무제표 분석 및 손익관리", "keywords": ["손익분석", "재무제표", "원가관리", "회계기초", "자금관리", "재무비율", "예산관리", "재무의사결정"] },
+          { "id": "leadership", "name": "핵심 리더십과 동기부여", "keywords": ["소통", "조직관리", "동기부여", "팀리더십", "성과관리", "변화리더십", "팔로워십", "임파워먼트"] },
+          { "id": "strategic_planning", "name": "전략적 사고와 기획", "keywords": ["전략기획", "문제해결", "논리적사고", "사업기획", "SWOT분석", "기획력강화", "전략수립", "핵심과제추진"] },
+          { "id": "hr_management", "name": "HR(인사) 실무 기초", "keywords": ["인사관리", "성과평가", "인재육성", "채용", "KPI기획", "조직설계", "보상제도", "HRD기획"] },
+          { "id": "operation_m", "name": "생산 및 오퍼레이션 관리", "keywords": ["공정관리", "품질관리", "원가절감", "운영효율화", "생산성향상", "식스시그마", "현장개선", "공정최적화"] }
         ]
       },
       {
-        "id": "corp_org_competency",
-        "name": "기업·조직역량",
+        "id": "tax_law_admin",
+        "name": "세무·법무·공공행정",
         "subcategories": [
-          { "id": "org_culture", "name": "조직문화 개선", "keywords": ["일하는방식", "온보딩", "심리안전망", "조직몰입", "소통문화"] },
-          { "id": "compliance", "name": "컴플라이언스·법정", "keywords": ["법정의무교육", "윤리경영", "보안법규", "개인정보보호", "직장내성희롱예방"] },
-          { "id": "problem_solving", "name": "문제해결·기획", "keywords": ["로직트리", "보고서작성", "창의적사고", "MECE", "기획력"] },
-          { "id": "cs_management", "name": "고객만족(CS)", "keywords": ["고객응대", "서비스마인드", "VOC", "고객경험", "응대스킬"] },
-          { "id": "negotiation", "name": "협상·설득", "keywords": ["비즈니스협상", "갈등관리", "설득스피치", "윈윈전략", "설득기법"] },
-          { "id": "innovation_mind", "name": "혁신 마인드셋", "keywords": ["변화관리", "도 도전정신", "애자일", "창의력", "실행력"] }
+          { "id": "tax_practice", "name": "핵심 세무 실무", "keywords": ["부가가치세", "소득세", "절세전략", "원천징수", "법인세", "세무신고", "증빙관리", "연말정산"] },
+          { "id": "legal_practice", "name": "계약서 검토 및 법무 실무", "keywords": ["계약법", "법적리스크", "컴플라이언스", "계약서검토", "지식재산권", "기업법무", "분쟁예방", "저작권"] },
+          { "id": "public_admin", "name": "공공기관 행정 실무", "keywords": ["행정규정", "공공문서", "공무수행", "기획재정부지침", "예산집행", "공공입찰", "감사대응", "행정절차"] },
+          { "id": "labor_law", "name": "노동법 및 인사노무 관리", "keywords": ["근로기준법", "임금", "근로시간", "취업규칙", "노사관계", "연차휴가", "퇴직금", "노무리스크"] },
+          { "id": "audit_compliance", "name": "감사 대응 및 준법 경영", "keywords": ["내부감사", "컴플라이언스", "리스크관리", "내부통제", "윤리경영", "감사지적사항", "리스크점검", "준법감시"] }
         ]
       },
       {
-        "id": "data_dev_it",
-        "name": "데이터·개발·IT",
+        "id": "job_license",
+        "name": "직무 자격증·전문취득",
         "subcategories": [
-          { "id": "fullstack", "name": "풀스택 웹개발", "keywords": ["React", "Node.js", "API", "프론트엔드", "백엔드"] },
-          { "id": "app_dev", "name": "모바일 앱 개발", "keywords": ["Flutter", "iOS", "Android", "크로스플랫폼", "앱배포"] },
-          { "id": "devops", "name": "데브옵스·인프라", "keywords": ["Docker", "Kubernetes", "CI/CD", "AWS", "인프라구축"] },
-          { "id": "ai_ml", "name": "머신러닝·딥러닝", "keywords": ["텐서플로우", "파이토치", "AI모델", "딥러닝기초", "자연어처리"] },
-          { "id": "it_pm", "name": "IT 기획·PM", "keywords": ["애자일", "스프린트", "요구사항정의", "프로젝트관리", "백로그관리"] },
-          { "id": "cyber_security", "name": "정보보호·네트워크", "keywords": ["방화벽", "해킹대응", "보안진단", "취약점", "암호화"] }
+          { "id": "license_prep", "name": "사내 필수 자격증 대비", "keywords": ["자격증", "합격전략", "시험대비", "핵심이론", "기출분석", "단기합격", "실기대비", "자격증취득"] },
+          { "id": "prof_skillup", "name": "전문 직무 역량 강화", "keywords": ["전문성", "실무스킬", "직무마스터", "스킬업", "고급실무", "직무역량", "전문가과정", "실무트레이닝"] },
+          { "id": "license_law", "name": "법정의무교육 및 자격 유지", "keywords": ["법정의무", "준법교육", "자격유지", "안전보건", "성희롱예방", "개인정보교육", "의무이수", "보수교육"] },
+          { "id": "tech_cert", "name": "기술 및 실무 자격 과정", "keywords": ["기술자격", "실무능력", "인증취득", "엔지니어링", "기술실무", "자격검정", "기술인증", "전문기술"] },
+          { "id": "career_dev", "name": "커리어 패스 설계 및 코칭", "keywords": ["커리어", "성장플랜", "자기계발", "커리어비전", "역량진단", "경력개발", "프로페셔널", "목표달성"] }
         ]
       },
       {
-        "id": "design_creative",
-        "name": "디자인·크리에이티브",
+        "id": "logistics_procurement",
+        "name": "유통·물류·구매실무",
         "subcategories": [
-          { "id": "ui_ux", "name": "UI/UX 디자인", "keywords": ["피그마", "와이어프레임", "사용자경험", "프로토타입", "인터페이스"] },
-          { "id": "graphic", "name": "그래픽 디자인", "keywords": ["포토샵", "일러스트", "브랜딩", "시각디자인", "타이포그래피"] },
-          { "id": "video_edit", "name": "영상 편집", "keywords": ["프리미어", "애프터이펙트", "유튜브편집", "모션그래픽", "색보정"] },
-          { "id": "content_prod", "name": "콘텐츠 제작", "keywords": ["카드뉴스", "상세페이지", "블로그디자인", "배너제작", "홍보물"] },
-          { "id": "three_d", "name": "3D 모델링", "keywords": ["블렌더", "시각화", "렌더링", "3D디자인", "오브젝트"] },
-          { "id": "brand_design", "name": "브랜드 아이덴티티", "keywords": ["BI", "CI", "패키지디자인", "경험디자인", "컨셉추얼"] }
+          { "id": "scm_logistics", "name": "SCM 및 물류 관리 실무", "keywords": ["SCM", "물류관리", "유통구조", "공급망", "물류비절감", "유통채널", "물류기획", "배송최적화"] },
+          { "id": "procurement", "name": "전략적 구매 및 협상", "keywords": ["구매관리", "원가절감", "공급망", "공급업체관리", "구매협상", "단가인하", "조달실무", "아웃소싱"] },
+          { "id": "inventory_m", "name": "재고 관리 및 창고 운영", "keywords": ["재고관리", "창고효율", "입출고", "재고회전율", "수요예측", "안전재고", "창고관리", "WMS활용"] },
+          { "id": "global_shipping", "name": "글로벌 무역 및 선적 실무", "keywords": ["무역실무", "선적", "통관절차", "인코텀즈", "수출입", "관세", "포워딩", "무역서류"] },
+          { "id": "logistics_it", "name": "물류 IT 및 스마트 SCM", "keywords": ["스마트물류", "WMS", "물류자동화", "바코드/RFID", "물류테크", "스마트창고", "데이터기반물류", "SCM시스템"] }
         ]
       },
       {
-        "id": "marketing_branding",
-        "name": "마케팅·브랜딩",
+        "id": "customer_service_sales",
+        "name": "CS·영업·고객관리",
         "subcategories": [
-          { "id": "digital_mkt", "name": "디지털 마케팅", "keywords": ["퍼포먼스마케팅", "GA4", "SNS광고", "매체분석", "전환캠페인"] },
-          { "id": "brand_mkt", "name": "브랜드 전략", "keywords": ["스토리텔링", "포지셔닝", "아이덴티티", "브랜드구축", "충성고객"] },
-          { "id": "content_mkt", "name": "콘텐츠 마케팅", "keywords": ["바이럴", "SEO", "카피라이팅", "콘텐츠기획", "채널운영"] },
-          { "id": "growth_hacking", "name": "그로스 해킹", "keywords": ["데이터드리븐", "A/B테스트", "전환율", "퍼널분석", "지표개선"] },
-          { "id": "global_mkt", "name": "글로벌 마케팅", "keywords": ["해외진출", "K-컬처", "수출마케팅", "글로벌채널", "현지화전략"] },
-          { "id": "influencer_mkt", "name": "인플루언서 마케팅", "keywords": ["제휴마케팅", "바이럴마케팅", "콜라보", "크리에이터", "SNS소통"] }
-        ]
-      },
-      {
-        "id": "foreign_language",
-        "name": "외국어",
-        "subcategories": [
-          { "id": "biz_english", "name": "비즈니스 영어", "keywords": ["이메일영어", "영어회의", "오픽", "비즈니스회화", "협상영어"] },
-          { "id": "global_conv", "name": "글로벌 회화", "keywords": ["생활영어", "발음교정", "실전회화", "청취훈련", "스피킹"] },
-          { "id": "chinese", "name": "비즈니스 중국어", "keywords": ["회화기초", "중국무역", "HSK", "비즈니스중국어", "현지회화"] },
-          { "id": "japanese", "name": "비즈니스 일본어", "keywords": ["일본식표현", "면접일본어", "JLPT", "비즈니스매너", "일본어회화"] },
-          { "id": "other_lang", "name": "제2외국어 특강", "keywords": ["스페인어", "베트남어", "문화이해", "기초회화", "특수어학"] },
-          { "id": "global_etiquette", "name": "글로벌 비즈니스 매너", "keywords": ["해외문화", "비즈니스에티켓", "글로벌소통", "매너", "의전"] }
-        ]
-      },
-      {
-        "id": "humanities_lifestyle_selfdev",
-        "name": "인문·교양·라이프·자기개발",
-        "subcategories": [
-          { "id": "humanities", "name": "인문학·철학", "keywords": ["역사", "인문고전", "예술사", "철학적사고", "교양지식"] },
-          { "id": "mindset", "name": "마인드셋·멘탈", "keywords": ["회복탄력성", "번아웃극복", "시간관리", "자기동기부여", "스트레스관리"] },
-          { "id": "health_wellness", "name": "건강·웰니스", "keywords": ["스트레스해소", "수면관리", "바른자세", "체력관리", "멘탈케어"] },
-          { "id": "hobby_life", "name": "취미·라이프스타일", "keywords": ["인테리어", "여행", "음악감상", "취미개발", "여가생활"] },
-          { "id": "speech_comms", "name": "스피치·커뮤니케이션", "keywords": ["보이스스타일링", "프레젠테이션", "대화법", "스피치능력", "비언어커뮤니케이션"] },
-          { "id": "career_growth", "name": "커리어 성장", "keywords": ["자기계발", "목표달성", "네트워킹", "역량강화", "비전설정"] }
-        ]
-      },
-      {
-        "id": "certification",
-        "name": "자격증",
-        "subcategories": [
-          { "id": "it_cert", "name": "IT·디지털 자격증", "keywords": ["정보처리기사", "컴활1급", "SQLD", "빅데이터분석기사", "네트워크관리사"] },
-          { "id": "finance_cert", "name": "금융·회계 자격증", "keywords": ["재경관리사", "전산회계", "투자자산운용사", "회계관리", "펀드투자"] },
-          { "id": "hr_cert", "name": "인사·노무 자격증", "keywords": ["노무사", "직업상담사", "HR전문가", "임금관리", "근로기준법"] },
-          { "id": "lang_cert", "name": "어학 시험 대비", "keywords": ["토익", "오픽", "토ส", "텝스", "아이엘츠"] },
-          { "id": "tech_cert", "name": "기술·안전 자격증", "keywords": ["산업안전기사", "위험물", "건축기사", "소방설비", "품질관리기사"] },
-          { "id": "management_cert", "name": "경영·프로젝트 자격증", "keywords": ["PMP", "품질관리사", "식스시그마", "물류관리사", "유통관리사"] }
+          { "id": "b2b_sales", "name": "B2B 영업 및 계약 체결", "keywords": ["B2B영업", "제안서", "고객발굴", "영업파이프라인", "클로징", "신규시계척", "기업영업", "제안발표"] },
+          { "id": "premium_cs", "name": "프리미엄 CS 및 응대 스킬", "keywords": ["CS교육", "고객만족", "불만고객응대", "서비스마인드", "전화응대", "고객경험개선", "컴플레인케어", "감성소통"] },
+          { "id": "key_account", "name": "핵심 고객사(KA) 관리", "keywords": ["고객관리", "관계구축", "유지전략", "VIP케어", "고객이탈방지", "교차판매", "고객LTV", "계정관리"] },
+          { "id": "sales_strategy", "name": "매출 성장을 위한 영업 전략", "keywords": ["매출성장", "영업목표", "시장분석", "영업전략", "타겟고객", "경쟁사분석", "영업성과관리", "영업마인드"] },
+          { "id": "crm_analyst", "name": "CRM 데이터 분석과 활용", "keywords": ["CRM", "고객데이터", "타겟마케팅", "고객세분화", "구매패턴", "재구매율", "CRM마케팅", "고객인사이트"] }
         ]
       }
     ],
     "courses": [
-      {
-        "id": 1,
-        "title": "실무자라면 꼭 알아야 할 여신법률 [여신거래정립편]",
-        "category": "mgmt_finance_mba_leadership",
-        "subcategory": "finance_acc",
-        "keyword": "세무관리",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 2,
-        "title": "[해커스 PRO MBA] 마케팅",
-        "category": "mgmt_finance_mba_leadership",
-        "subcategory": "mba_strategy",
-        "keyword": "경영전략",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 3,
-        "title": "[고급] 그림으로 배우는 일본어 한자&작문",
-        "category": "foreign_language",
-        "subcategory": "japanese",
-        "keyword": "JLPT",
-        "hours": 2,
-        "difficulty": "고급"
-      },
-      {
-        "id": 4,
-        "title": "[해커스 PRO MBA] 회계",
-        "category": "mgmt_finance_mba_leadership",
-        "subcategory": "finance_acc",
-        "keyword": "재무제표",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 5,
-        "title": "[해커스 PRO MBA] 재무관리",
-        "category": "mgmt_finance_mba_leadership",
-        "subcategory": "finance_acc",
-        "keyword": "손익분석",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 6,
-        "title": "[해커스 PRO MBA] 인적자원관리",
-        "category": "corp_org_competency",
-        "subcategory": "org_culture",
-        "keyword": "온보딩",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 7,
-        "title": "가장 쉽게 배우는 일러스트, 기초부터 응용까지",
-        "category": "design_creative",
-        "subcategory": "graphic",
-        "keyword": "일러스트",
-        "hours": 2,
-        "difficulty": "초급"
-      },
-      {
-        "id": 8,
-        "title": "누구나 R기 쉬운 R 데이터 분석 프로젝트",
-        "category": "ai_digital",
-        "subcategory": "bigdata",
-        "keyword": "R",
-        "hours": 2,
-        "difficulty": "초급"
-      },
-      {
-        "id": 9,
-        "title": "잘 써야 잘 읽힌다! 직장인을 위한 비즈니스 글쓰기 수업",
-        "category": "corp_org_competency",
-        "subcategory": "problem_solving",
-        "keyword": "보고서작성",
-        "hours": 2,
-        "difficulty": "초급"
-      },
-      {
-        "id": 10,
-        "title": "상대의 Yes를 끌어내는 [성공적인 협상 원칙]",
-        "category": "corp_org_competency",
-        "subcategory": "negotiation",
-        "keyword": "비즈니스협상",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 11,
-        "title": "MZ후배가 어려운 요즘선배를 위한, 조직 내 세대소통",
-        "category": "corp_org_competency",
-        "subcategory": "org_culture",
-        "keyword": "소통문화",
-        "hours": 2,
-        "difficulty": "초급"
-      },
-      {
-        "id": 12,
-        "title": "실무자라면 꼭 알아야 할 [의심거래보고(STR) 작성법]",
-        "category": "mgmt_finance_mba_leadership",
-        "subcategory": "finance_acc",
-        "keyword": "세무관리",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 13,
-        "title": "아는 만큼 지킨다! 공정거래를 위한 하도급법 교육",
-        "category": "corp_org_competency",
-        "subcategory": "compliance",
-        "keyword": "윤리경영",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 14,
-        "title": "우리 병원 차별화 전략! 4주기 의료인증의 모든 것",
-        "category": "corp_org_competency",
-        "subcategory": "cs_management",
-        "keyword": "고객응대",
-        "hours": 2,
-        "difficulty": "초급"
-      },
-      {
-        "id": 15,
-        "title": "유능한 인재를 선점하는 [스마트한 면접관의 모든 것]",
-        "category": "corp_org_competency",
-        "subcategory": "org_culture",
-        "keyword": "온보딩",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 16,
-        "title": "가장 쉽게 배우는 Spring(스프링), 기초부터 실무까지",
-        "category": "ai_digital",
-        "subcategory": "sw_dev",
-        "keyword": "자바",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 17,
-        "title": "인사쟁이라면 꼭 알아야 하는 [인사 실무의 모든 것]",
-        "category": "corp_org_competency",
-        "subcategory": "org_culture",
-        "keyword": "조직몰입",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 18,
-        "title": "성과를 끌어올리는 리얼영업",
-        "category": "marketing_branding",
-        "subcategory": "digital_mkt",
-        "keyword": "SNS광고",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 19,
-        "title": "우리 병원 차별화 전략! 병원CS의 모든 것",
-        "category": "corp_org_competency",
-        "subcategory": "cs_management",
-        "keyword": "VOC",
-        "hours": 2,
-        "difficulty": "초급"
-      },
-      {
-        "id": 20,
-        "title": "설계부터 특허까지, R&D 기획의 모든 것",
-        "category": "corp_org_competency",
-        "subcategory": "problem_solving",
-        "keyword": "기획력",
-        "hours": 2,
-        "difficulty": "고급"
-      },
-      {
-        "id": 21,
-        "title": "300% 활용! 칼퇴를 부르는 한글2022의 모든 것",
-        "category": "oa_practical",
-        "subcategory": "word_hwp",
-        "keyword": "공문서",
-        "hours": 2,
-        "difficulty": "초급"
-      },
-      {
-        "id": 22,
-        "title": "핵심만 쏙! 실무에 바로 적용하는 머신러닝",
-        "category": "ai_digital",
-        "subcategory": "ai_ml",
-        "keyword": "AI모델",
-        "hours": 2,
-        "difficulty": "중급"
-      },
-      {
-        "id": 23,
-        "title": "기획에서 판매까지! 이커머스 실무바이블",
-        "category": "marketing_branding",
-        "subcategory": "digital_mkt",
-        "keyword": "퍼포먼스마케팅",
-        "hours": 2,
-        "difficulty": "중급"
-      }
+      { "id": 1, "title": "[해커스 PRO] 챗GPT를 활용한 스마트 업무 자동화", "category": "ai_dt", "subcategory": "ai_basic", "keyword": "챗GPT", "hours": 2, "difficulty": "초급" },
+      { "id": 2, "title": "[해커스 PRO] 실전 퍼포먼스 마케팅 핵심 전략", "category": "marketing_brand", "subcategory": "digital_marketing", "keyword": "퍼포먼스마케팅", "hours": 2, "difficulty": "중급" },
+      { "id": 3, "title": "[해커스 PRO] 비즈니스 성과를 높이는 보고서 작성법", "category": "communication", "subcategory": "biz_writing", "keyword": "보고서작성", "hours": 2, "difficulty": "초급" },
+      { "id": 4, "title": "[해커스 PRO] 글로벌 실무 비즈니스 영어 회화", "category": "language_global", "subcategory": "biz_english", "keyword": "비즈니스영어", "hours": 2, "difficulty": "중급" },
+      { "id": 5, "title": "[해커스 PRO MBA] 재무관리 및 손익분석 실무", "category": "mgmt_finance_mba_leadership", "subcategory": "finance_acc", "keyword": "손익분석", "hours": 2, "difficulty": "중급" },
+      { "id": 6, "title": "[해커스 PRO] 핵심 세무 및 절세 전략 실무", "category": "tax_law_admin", "subcategory": "tax_practice", "keyword": "부가가치세", "hours": 2, "difficulty": "중급" },
+      { "id": 7, "title": "[해커스 PRO] 사내 필수 자격증 합격 패키지", "category": "job_license", "subcategory": "license_prep", "keyword": "자격증", "hours": 2, "difficulty": "초급" },
+      { "id": 8, "title": "[해커스 PRO] SCM 및 스마트 물류 관리 실무", "category": "logistics_procurement", "subcategory": "scm_logistics", "keyword": "SCM", "hours": 2, "difficulty": "중급" },
+      { "id": 9, "title": "[해커스 PRO] 매출을 부르는 B2B 영업 제안 전략", "category": "customer_service_sales", "subcategory": "b2b_sales", "keyword": "B2B영업", "hours": 2, "difficulty": "중급" }
     ]
   }
